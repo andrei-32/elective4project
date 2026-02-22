@@ -28,9 +28,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # PRs from forks: GitHub does not provide secrets (security). Alert developers.
+      - name: Warn when PR from fork (secrets unavailable)
+        if: github.event_name == 'pull_request'
+        run: |
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            echo "::warning::PR from fork — ENCRYPTION_KEY and other secrets are not available. Output will not be encrypted. For compliance, merge to main branch or use same-repo PRs."
+          fi
+
       - name: Run CSV processing pipeline
         run: python main.py
-        # Optional: Add env.ENCRYPTION_KEY from GitHub Secrets for encryption
+        env:
+          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
+          # Set repository variable REQUIRE_ENCRYPTION=true for compliance (fail when key missing)
+          REQUIRE_ENCRYPTION: ${{ vars.REQUIRE_ENCRYPTION || 'false' }}
 
       - name: Upload output artifacts
         if: always()

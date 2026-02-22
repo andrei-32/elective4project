@@ -1,6 +1,7 @@
 """Main orchestrator - processes all CSV files from input folder to output folder."""
 
 import logging
+import os
 from pathlib import Path
 
 from . import config
@@ -91,6 +92,13 @@ def run() -> int:
     skip_encryption = config.DEFAULT_KEY is None
     if skip_encryption:
         logger.info("ENCRYPTION_KEY not set - encryption/decryption will be skipped.")
+        # Fail when encryption is required for compliance (e.g. on push to main)
+        if os.environ.get("REQUIRE_ENCRYPTION", "").lower() in ("true", "1", "yes"):
+            logger.error(
+                "REQUIRE_ENCRYPTION is set but ENCRYPTION_KEY is missing. "
+                "Set ENCRYPTION_KEY (e.g. env var or GitHub Secrets). Note: fork PRs cannot access secrets. Aborting."
+            )
+            return 1
 
     results = process_all_csv_files(skip_encryption=skip_encryption)
     has_errors = any(r["status"] != "ok" for r in results)
