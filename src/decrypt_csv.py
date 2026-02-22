@@ -10,13 +10,13 @@ from . import config
 from .mask_sensitive_columns import mask_dataframe
 
 
-def decrypt_csv_output(csv_file: str | Path, mask: bool = True) -> Path:
+def decrypt_csv_output(csv_file: str | Path, mask: bool = False) -> Path:
     """
     Decrypt an encrypted CSV file and save the plaintext output.
 
     Args:
         csv_file: Path to the encrypted file (.bin) to decrypt.
-        mask: If True, mask sensitive columns. If False, keep data unmasked.
+        mask: If True, mask sensitive columns. If False, keep data unmasked (default).
 
     Returns:
         Path to the decrypted CSV output file.
