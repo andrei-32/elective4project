@@ -1,13 +1,10 @@
 """Verify file integrity using stored checksum."""
 
 import hashlib
-import logging
 from pathlib import Path
 
 from . import config
 from .generate_checksum import generate_checksum, _normalize_for_hash
-
-logger = logging.getLogger(__name__)
 
 
 def verify_file_integrity(csv_file: str | Path) -> bool:
@@ -15,14 +12,14 @@ def verify_file_integrity(csv_file: str | Path) -> bool:
     Verify a file's integrity by comparing against its stored checksum.
 
     If no checksum file exists, one is generated and verification passes.
-    If checksum mismatches (e.g. line ending changes), it is regenerated and
-    verification passes (handles cross-platform consistency).
+    Text files use normalized line endings for cross-platform consistency.
 
     Args:
         csv_file: Path to the file to verify.
 
     Returns:
-        True if the file integrity is verified (or checksum is newly created/updated).
+        True if the file integrity is verified (or checksum is newly created),
+        False if the file does not match the stored checksum.
 
     Raises:
         FileNotFoundError: If the file does not exist.
@@ -46,10 +43,4 @@ def verify_file_integrity(csv_file: str | Path) -> bool:
     normalized = _normalize_for_hash(data)
     actual_checksum = hashlib.sha256(normalized).hexdigest()
 
-    if actual_checksum != expected_checksum:
-        logger.warning(
-            "Checksum mismatch for %s (e.g. line ending change). Regenerating.",
-            file_path.name,
-        )
-        generate_checksum(file_path)
-    return True  # Always pass after potential regeneration
+    return actual_checksum == expected_checksum

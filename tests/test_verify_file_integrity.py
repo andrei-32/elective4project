@@ -29,18 +29,15 @@ def test_verify_file_integrity_unchanged_file(sample_csv, input_output_dirs):
 
 
 def test_verify_file_integrity_tampered_file(sample_csv, input_output_dirs):
-    """Tampered file triggers checksum regeneration (verify passes, checksum updated)."""
+    """Tampered file should fail verification."""
     input_dir, output_dir = input_output_dirs
     csv_path = input_dir / "sample.csv"
     csv_path.write_text(sample_csv.read_text())
     generate_checksum(csv_path)
-    old_checksum = (output_dir / "sample.checksum").read_text()
 
     csv_path.write_text(sample_csv.read_text() + "\nTampered,row,123,999")
 
-    assert verify_file_integrity(csv_path) is True
-    new_checksum = (output_dir / "sample.checksum").read_text()
-    assert new_checksum != old_checksum
+    assert verify_file_integrity(csv_path) is False
 
 
 def test_verify_file_integrity_file_not_found():
