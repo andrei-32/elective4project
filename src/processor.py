@@ -19,7 +19,7 @@ ENCRYPTED_EXTENSION = ".bin"
 
 
 def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
-    """Process a single CSV: verify → mask → checksum → encrypt."""
+    """Process a single CSV: verify → encrypt/decrypt (unmasked) → mask → checksum."""
     result = {"file": str(csv_path.name), "status": "ok", "outputs": []}
     try:
         if not verify_file_integrity(csv_path):
@@ -28,24 +28,27 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
             return result
 
         result["outputs"].append("integrity_verified")
-        masked_path = mask_sensitive_columns(csv_path)
-        result["outputs"].append(str(masked_path.name))
 
-        checksum_path, _ = generate_checksum(masked_path)
-        result["outputs"].append(str(checksum_path.name))
-
+        # First, encrypt and decrypt the original (unmasked) data to demonstrate encryption works
         if not skip_encryption:
             try:
-                enc_path = encrypt_csv_output(masked_path)
-                result["outputs"].append(str(enc_path.name))
-                # Decrypt the encrypted output so we have a readable CSV
-                dec_path = decrypt_csv_output(enc_path)
-                result["outputs"].append(str(dec_path.name))
+                enc_path_original = encrypt_csv_output(csv_path)
+                result["outputs"].append(str(enc_path_original.name))
+                # Decrypt to get unmasked version (proves encrypt/decrypt works)
+                dec_path_unmasked = decrypt_csv_output(enc_path_original, mask=False)
+                result["outputs"].append(str(dec_path_unmasked.name))
             except ValueError as e:
                 if "Encryption key not configured" in str(e):
                     logger.warning("Skipping encryption: %s", e)
                 else:
                     raise
+
+        # Now mask the original CSV for security
+        masked_path = mask_sensitive_columns(csv_path)
+        result["outputs"].append(str(masked_path.name))
+
+        checksum_path, _ = generate_checksum(masked_path)
+        result["outputs"].append(str(checksum_path.name))
 
     except Exception as e:
         logger.exception("Error processing %s", csv_path.name)
@@ -56,7 +59,7 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
 
 
 def _process_encrypted_file(bin_path: Path, skip_encryption: bool) -> dict:
-    """Process a single .bin file: decrypt → checksum."""
+    """Process a single .bin file: decrypt (unmasked & masked) → checksum."""
     result = {"file": str(bin_path.name), "status": "ok", "outputs": []}
     try:
         if skip_encryption:
@@ -64,10 +67,14 @@ def _process_encrypted_file(bin_path: Path, skip_encryption: bool) -> dict:
             result["outputs"].append("decryption_skipped_no_key")
             return result
 
-        dec_path = decrypt_csv_output(bin_path)
-        result["outputs"].append(str(dec_path.name))
+        # Generate both unmasked and masked versions
+        dec_path_unmasked = decrypt_csv_output(bin_path, mask=False)
+        result["outputs"].append(str(dec_path_unmasked.name))
 
-        checksum_path, _ = generate_checksum(dec_path)
+        dec_path_masked = decrypt_csv_output(bin_path, mask=True)
+        result["outputs"].append(str(dec_path_masked.name))
+
+        checksum_path, _ = generate_checksum(dec_path_masked)
         result["outputs"].append(str(checksum_path.name))
 
     except Exception as e:

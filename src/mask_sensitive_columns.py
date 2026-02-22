@@ -37,6 +37,23 @@ def _mask_value(value: str, mask_char: str = "*") -> str:
     )
 
 
+def mask_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Mask sensitive columns in a DataFrame.
+
+    Args:
+        df: DataFrame to mask.
+
+    Returns:
+        DataFrame with sensitive columns masked (creates a copy).
+    """
+    df_masked = df.copy()
+    for col in df_masked.columns:
+        if _is_sensitive_column(col):
+            df_masked[col] = df_masked[col].apply(_mask_value)
+    return df_masked
+
+
 def mask_sensitive_columns(csv_file: str | Path) -> Path:
     """
     Mask sensitive columns in a CSV file and save the result.
@@ -58,10 +75,7 @@ def mask_sensitive_columns(csv_file: str | Path) -> Path:
     config.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     df = pd.read_csv(csv_path)
+    df_masked = mask_dataframe(df)
 
-    for col in df.columns:
-        if _is_sensitive_column(col):
-            df[col] = df[col].apply(_mask_value)
-
-    df.to_csv(output_path, index=False)
+    df_masked.to_csv(output_path, index=False)
     return output_path
