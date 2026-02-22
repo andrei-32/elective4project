@@ -38,6 +38,9 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
             try:
                 enc_path = encrypt_csv_output(masked_path)
                 result["outputs"].append(str(enc_path.name))
+                # Decrypt the encrypted output so we have a readable CSV
+                dec_path = decrypt_csv_output(enc_path)
+                result["outputs"].append(str(dec_path.name))
             except ValueError as e:
                 if "Encryption key not configured" in str(e):
                     logger.warning("Skipping encryption: %s", e)
