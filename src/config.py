@@ -16,7 +16,8 @@ DEFAULT_KEY = _key.strip() or None
 # Columns to mask (case-insensitive partial match)
 SENSITIVE_COLUMN_PATTERNS = [
     "ssn", "social_security", "credit_card", "cc_number", "card_number",
-    "password", "secret", "api_key", "token", "email", "phone", "dob"
+    "password", "secret", "api_key", "token", "email", "phone", "dob",
+    "student_id", "studentid", "id_number", "identifier"
 ]
 
 # Checksum file extension
