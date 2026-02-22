@@ -18,15 +18,69 @@ CSV_EXTENSIONS = {".csv"}
 ENCRYPTED_EXTENSION = ".bin"
 
 
+def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
+    """Process a single CSV: verify → mask → checksum → encrypt."""
+    result = {"file": str(csv_path.name), "status": "ok", "outputs": []}
+    try:
+        if not verify_file_integrity(csv_path):
+            result["status"] = "integrity_failed"
+            result["outputs"].append("integrity_verification_failed")
+            return result
+
+        result["outputs"].append("integrity_verified")
+        masked_path = mask_sensitive_columns(csv_path)
+        result["outputs"].append(str(masked_path.name))
+
+        checksum_path, _ = generate_checksum(masked_path)
+        result["outputs"].append(str(checksum_path.name))
+
+        if not skip_encryption:
+            try:
+                enc_path = encrypt_csv_output(masked_path)
+                result["outputs"].append(str(enc_path.name))
+            except ValueError as e:
+                if "Encryption key not configured" in str(e):
+                    logger.warning("Skipping encryption: %s", e)
+                else:
+                    raise
+
+    except Exception as e:
+        logger.exception("Error processing %s", csv_path.name)
+        result["status"] = "error"
+        result["error"] = str(e)
+
+    return result
+
+
+def _process_encrypted_file(bin_path: Path, skip_encryption: bool) -> dict:
+    """Process a single .bin file: decrypt → checksum."""
+    result = {"file": str(bin_path.name), "status": "ok", "outputs": []}
+    try:
+        if skip_encryption:
+            result["status"] = "skipped"
+            result["outputs"].append("decryption_skipped_no_key")
+            return result
+
+        dec_path = decrypt_csv_output(bin_path)
+        result["outputs"].append(str(dec_path.name))
+
+        checksum_path, _ = generate_checksum(dec_path)
+        result["outputs"].append(str(checksum_path.name))
+
+    except Exception as e:
+        logger.exception("Error decrypting %s", bin_path.name)
+        result["status"] = "error"
+        result["error"] = str(e)
+
+    return result
+
+
 def process_all_csv_files(skip_encryption: bool = True) -> list[dict]:
     """
-    Process all CSV files in the input directory.
+    Process all files in the input directory (dual-mode pipeline).
 
-    Pipeline for each CSV:
-    1. Verify integrity (or generate checksum if first run)
-    2. Mask sensitive columns
-    3. Generate checksum for masked output
-    4. Optionally encrypt (requires ENCRYPTION_KEY)
+    - .csv files: verify → mask → checksum → encrypt
+    - .bin files: decrypt → checksum (requires ENCRYPTION_KEY)
 
     Args:
         skip_encryption: If True, skip encrypt/decrypt when key not set (default for CI).
@@ -39,48 +93,17 @@ def process_all_csv_files(skip_encryption: bool = True) -> list[dict]:
 
     results = []
     csv_files = [f for f in config.INPUT_DIR.iterdir() if f.suffix.lower() == ".csv"]
+    bin_files = [f for f in config.INPUT_DIR.iterdir() if f.suffix.lower() == ".bin"]
 
-    if not csv_files:
-        logger.info("No CSV files found in input directory.")
+    if not csv_files and not bin_files:
+        logger.info("No CSV or .bin files found in input directory.")
         return results
 
     for csv_path in csv_files:
-        result = {"file": str(csv_path.name), "status": "ok", "outputs": []}
-        try:
-            # 1. Verify / generate checksum for original
-            if verify_file_integrity(csv_path):
-                result["outputs"].append("integrity_verified")
-            else:
-                result["status"] = "integrity_failed"
-                result["outputs"].append("integrity_verification_failed")
-                results.append(result)
-                continue
+        results.append(_process_csv_file(csv_path, skip_encryption))
 
-            # 2. Mask sensitive columns
-            masked_path = mask_sensitive_columns(csv_path)
-            result["outputs"].append(str(masked_path.name))
-
-            # 3. Generate checksum for masked output
-            checksum_path, _ = generate_checksum(masked_path)
-            result["outputs"].append(str(checksum_path.name))
-
-            # 4. Encrypt (optional, when key is available)
-            if not skip_encryption:
-                try:
-                    enc_path = encrypt_csv_output(masked_path)
-                    result["outputs"].append(str(enc_path.name))
-                except ValueError as e:
-                    if "Encryption key not configured" in str(e):
-                        logger.warning("Skipping encryption: %s", e)
-                    else:
-                        raise
-
-        except Exception as e:
-            logger.exception("Error processing %s", csv_path.name)
-            result["status"] = "error"
-            result["error"] = str(e)
-
-        results.append(result)
+    for bin_path in bin_files:
+        results.append(_process_encrypted_file(bin_path, skip_encryption))
 
     return results
 
@@ -101,7 +124,7 @@ def run() -> int:
             return 1
 
     results = process_all_csv_files(skip_encryption=skip_encryption)
-    has_errors = any(r["status"] != "ok" for r in results)
+    has_errors = any(r["status"] in ("integrity_failed", "error") for r in results)
 
     for r in results:
         logger.info("%s: %s -> %s", r["file"], r["status"], r.get("outputs", []))

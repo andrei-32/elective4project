@@ -18,7 +18,7 @@ A Python-based CSV data processing pipeline that automatically processes CSV fil
 
 ```
 elective4project/
-├── input/              # Place CSV files here
+├── input/              # Place CSV or .bin files here (dual-mode pipeline)
 ├── output/             # Processed files appear here
 ├── src/
 │   ├── encrypt_csv.py          # encrypt_csv_output()
@@ -41,7 +41,9 @@ elective4project/
    pip install -r requirements.txt
    ```
 
-2. **Add CSV files** to the `input/` folder
+2. **Add files** to the `input/` folder:
+   - **.csv** → mask, checksum, encrypt
+   - **.bin** (encrypted) → decrypt, checksum (requires ENCRYPTION_KEY)
 
 3. **Run the pipeline**
    ```bash
