@@ -96,7 +96,7 @@ def run() -> int:
         if os.environ.get("REQUIRE_ENCRYPTION", "").lower() in ("true", "1", "yes"):
             logger.error(
                 "REQUIRE_ENCRYPTION is set but ENCRYPTION_KEY is missing. "
-                "Set ENCRYPTION_KEY (e.g. env var or GitHub Secrets). Note: fork PRs cannot access secrets. Aborting."
+                "Configure ENCRYPTION_KEY (env var locally, GitHub Secrets in CI). Aborting."
             )
             return 1
 
