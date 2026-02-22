@@ -33,6 +33,7 @@ jobs:
         # Optional: Add env.ENCRYPTION_KEY from GitHub Secrets for encryption
 
       - name: Upload output artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: processed-csv-output

@@ -6,9 +6,24 @@ from pathlib import Path
 from . import config
 
 
+def _normalize_for_hash(data: bytes) -> bytes:
+    """
+    Normalize line endings for consistent checksums across platforms (Windows/Linux/Mac).
+    Prevents integrity failures when git converts CRLF <-> LF.
+    """
+    try:
+        text = data.decode("utf-8")
+        normalized = text.replace("\r\n", "\n").replace("\r", "\n")
+        return normalized.encode("utf-8")
+    except UnicodeDecodeError:
+        return data  # Binary file, hash as-is
+
+
 def generate_checksum(csv_file: str | Path) -> tuple[Path, str]:
     """
     Generate SHA-256 checksum for a file and save it.
+
+    Text/CSV files are normalized (line endings) for cross-platform consistency.
 
     Args:
         csv_file: Path to the file to checksum.
@@ -23,12 +38,9 @@ def generate_checksum(csv_file: str | Path) -> tuple[Path, str]:
     if not file_path.exists():
         raise FileNotFoundError(f"File not found: {file_path}")
 
-    sha256_hash = hashlib.sha256()
-    with open(file_path, "rb") as f:
-        for byte_block in iter(lambda: f.read(4096), b""):
-            sha256_hash.update(byte_block)
-
-    checksum = sha256_hash.hexdigest()
+    data = file_path.read_bytes()
+    normalized = _normalize_for_hash(data)
+    checksum = hashlib.sha256(normalized).hexdigest()
 
     # Save checksum alongside the file (same stem, .checksum extension)
     output_path = config.OUTPUT_DIR / f"{file_path.stem}{config.CHECKSUM_EXT}"
