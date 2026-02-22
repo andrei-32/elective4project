@@ -80,10 +80,11 @@ def _process_encrypted_file(bin_path: Path, skip_encryption: bool) -> dict:
 
 def process_all_csv_files(skip_encryption: bool = True) -> list[dict]:
     """
-    Process all files in the input directory (dual-mode pipeline).
+    Process all files in the input and output directories (dual-mode pipeline).
 
-    - .csv files: verify → mask → checksum → encrypt
-    - .bin files: decrypt → checksum (requires ENCRYPTION_KEY)
+    - .csv in input/: verify → mask → checksum → encrypt → decrypt
+    - .bin in input/: decrypt → checksum (requires ENCRYPTION_KEY)
+    - .bin in output/: decrypt if no _decrypted.csv exists yet
 
     Args:
         skip_encryption: If True, skip encrypt/decrypt when key not set (default for CI).
@@ -96,16 +97,25 @@ def process_all_csv_files(skip_encryption: bool = True) -> list[dict]:
 
     results = []
     csv_files = [f for f in config.INPUT_DIR.iterdir() if f.suffix.lower() == ".csv"]
-    bin_files = [f for f in config.INPUT_DIR.iterdir() if f.suffix.lower() == ".bin"]
+    bin_in_input = [f for f in config.INPUT_DIR.iterdir() if f.suffix.lower() == ".bin"]
+    bin_in_output = [f for f in config.OUTPUT_DIR.iterdir() if f.suffix.lower() == ".bin"]
 
-    if not csv_files and not bin_files:
-        logger.info("No CSV or .bin files found in input directory.")
+    if not csv_files and not bin_in_input and not bin_in_output:
+        logger.info("No CSV or .bin files found in input or output directory.")
         return results
 
     for csv_path in csv_files:
         results.append(_process_csv_file(csv_path, skip_encryption))
 
-    for bin_path in bin_files:
+    for bin_path in bin_in_input:
+        results.append(_process_encrypted_file(bin_path, skip_encryption))
+
+    # Decrypt .bin files in output/ (e.g. from previous commits or same run)
+    for bin_path in bin_in_output:
+        dec_name = bin_path.stem.replace("_encrypted", "_decrypted") + ".csv"
+        dec_path = config.OUTPUT_DIR / dec_name
+        if dec_path.exists():
+            continue  # Already decrypted
         results.append(_process_encrypted_file(bin_path, skip_encryption))
 
     return results
