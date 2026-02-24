@@ -49,6 +49,10 @@ elective4project/
    ```bash
    python main.py
    ```
+   
+> **Note:**
+> - For local testing, run `python main.py` as shown above.
+> - When you push or create a pull request on GitHub, the pipeline runs automatically via GitHub Actions—no manual execution needed.
 
 4. **View results** in the `output/` folder
 
