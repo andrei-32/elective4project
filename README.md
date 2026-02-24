@@ -56,17 +56,22 @@ elective4project/
 
 **Sample input CSV (`input/test.csv`):**
 
-| Name         | SSN         | Email              | Credit Card     |
-|--------------|-------------|--------------------|----------------|
-| Alice Smith  | 123-45-6789 | alice@email.com    | 4111 1111 1111 1111 |
-| Bob Johnson  | 987-65-4321 | bob@email.com      | 5500 0000 0000 0004 |
+| Name                      | SSN         | Email                  | Credit Card           |
+|---------------------------|-------------|------------------------|----------------------|
+| Carpio, Jhenelle O.       | 123-45-6789 | jhenelle@email.com     | 4111 1111 1111 1111  |
+| Crisostomo, Selvin A.     | 987-65-4321 | selvin@email.com       | 5500 0000 0000 0004  |
+| Maclang, Clark Danniel V. | 456-78-1234 | clark@email.com        | 3400 0000 0000 009   |
+| Pangilinan, Paul Andrei M.| 321-54-9876 | paul@email.com         | 6011 0000 0000 0004  |
+
 
 **Sample masked output (`output/test_masked.csv`):**
 
-| Name         | SSN         | Email              | Credit Card     |
-|--------------|-------------|--------------------|----------------|
-| Alice Smith  | ***-**-6789 | a****@e****.com    | **** **** **** 1111 |
-| Bob Johnson  | ***-**-4321 | b****@e****.com    | **** **** **** 0004 |
+| Name                      | SSN         | Email                  | Credit Card           |
+|---------------------------|-------------|------------------------|----------------------|
+| Carpio, Jhenelle O.       | ***-**-6789 | j****@e****.com        | **** **** **** 1111  |
+| Crisostomo, Selvin A.     | ***-**-4321 | s****@e****.com        | **** **** **** 0004  |
+| Maclang, Clark Danniel V. | ***-**-1234 | c****@e****.com        | **** **** **** 0009  |
+| Pangilinan, Paul Andrei M.| ***-**-9876 | p****@e****.com        | **** **** **** 0004  |
 
 **Sample checksum output (`output/test.checksum`):**
 ```
