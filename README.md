@@ -1,4 +1,4 @@
-# CSV Data Processing Application
+# CSV Data Processing Application (Security and Integrity)
 
 A Python-based CSV data processing pipeline that automatically processes CSV files from the `input/` folder and saves results to the `output/` folder. Integrated with GitHub Actions for CI/CD automation.
 
