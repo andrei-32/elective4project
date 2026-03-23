@@ -18,6 +18,16 @@
       ]
     },
     {
+      "file": "emailtry.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "emailtry_encrypted.bin",
+        "emailtry_masked.csv",
+        "emailtry_masked.checksum"
+      ]
+    },
+    {
       "file": "external_dataset.csv",
       "status": "ok",
       "outputs": [
@@ -25,16 +35,6 @@
         "external_dataset_encrypted.bin",
         "external_dataset_masked.csv",
         "external_dataset_masked.checksum"
-      ]
-    },
-    {
-      "file": "email.csv",
-      "status": "ok",
-      "outputs": [
-        "integrity_verified",
-        "email_encrypted.bin",
-        "email_masked.csv",
-        "email_masked.checksum"
       ]
     }
   ]
