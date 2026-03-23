@@ -1,7 +1,7 @@
 {
-  "total_files": 7,
+  "total_files": 8,
   "status_counts": {
-    "ok": 6,
+    "ok": 7,
     "skipped": 1,
     "integrity_failed": 0,
     "error": 0
@@ -25,6 +25,16 @@
         "test1_encrypted.bin",
         "test1_masked.csv",
         "test1_masked.checksum"
+      ]
+    },
+    {
+      "file": "bad_data.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "bad_data_encrypted.bin",
+        "bad_data_masked.csv",
+        "bad_data_masked.checksum"
       ]
     },
     {
