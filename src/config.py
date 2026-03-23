@@ -7,6 +7,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 INPUT_DIR = PROJECT_ROOT / "input"
 OUTPUT_DIR = PROJECT_ROOT / "output"
+LOG_DIR = PROJECT_ROOT / "logs"
 
 # Encryption key - use env var ENCRYPTION_KEY for production/CI
 # Generate with: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
@@ -22,3 +23,7 @@ SENSITIVE_COLUMN_PATTERNS = [
 
 # Checksum file extension
 CHECKSUM_EXT = ".checksum"
+
+# Pipeline reporting outputs
+SUMMARY_JSON_NAME = "pipeline_summary.json"
+SUMMARY_PNG_NAME = "pipeline_summary.png"

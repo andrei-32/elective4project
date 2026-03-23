@@ -27,3 +27,22 @@ def test_mask_sensitive_columns_file_not_found(input_output_dirs):
 
     with pytest.raises(FileNotFoundError, match="not found"):
         mask_sensitive_columns("/nonexistent/file.csv")
+
+
+def test_mask_sensitive_columns_semicolon_csv(input_output_dirs):
+    """Masking should work with semicolon-delimited CSV files."""
+    input_dir, output_dir = input_output_dirs
+    csv_path = input_dir / "semicolon.csv"
+    csv_path.write_text(
+        "name;email;ssn;amount\n"
+        "Alice;alice@example.com;123-45-6789;100\n"
+        "Bob;bob@example.com;987-65-4321;200\n"
+    )
+
+    result = mask_sensitive_columns(csv_path)
+
+    assert result.exists()
+    content = result.read_text()
+    assert "alice@example.com" not in content
+    assert "123-45-6789" not in content
+    assert "Alice" in content

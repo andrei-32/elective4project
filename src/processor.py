@@ -10,12 +10,44 @@ from .generate_checksum import generate_checksum
 from .verify_file_integrity import verify_file_integrity
 from .encrypt_csv import encrypt_csv_output
 from .decrypt_csv import decrypt_csv_output
+from .reporting import write_pipeline_summary
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 CSV_EXTENSIONS = {".csv"}
 ENCRYPTED_EXTENSION = ".bin"
+
+
+def _configure_pipeline_logging() -> None:
+    config.LOG_DIR.mkdir(parents=True, exist_ok=True)
+
+    if logger.handlers:
+        return
+
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+
+    formatter = logging.Formatter(
+        "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+    )
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setFormatter(formatter)
+
+    run_file_handler = logging.FileHandler(config.LOG_DIR / "pipeline.log", mode="w", encoding="utf-8")
+    run_file_handler.setFormatter(formatter)
+
+    error_file_handler = logging.FileHandler(
+        config.LOG_DIR / "pipeline_errors.log",
+        mode="w",
+        encoding="utf-8",
+    )
+    error_file_handler.setLevel(logging.ERROR)
+    error_file_handler.setFormatter(formatter)
+
+    logger.addHandler(stream_handler)
+    logger.addHandler(run_file_handler)
+    logger.addHandler(error_file_handler)
 
 
 def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
@@ -123,6 +155,8 @@ def run() -> int:
     """
     Entry point for the pipeline. Returns exit code (0 = success).
     """
+    _configure_pipeline_logging()
+
     skip_encryption = config.DEFAULT_KEY is None
     if skip_encryption:
         logger.info("ENCRYPTION_KEY not set - encryption/decryption will be skipped.")
@@ -139,5 +173,13 @@ def run() -> int:
 
     for r in results:
         logger.info("%s: %s -> %s", r["file"], r["status"], r.get("outputs", []))
+
+    try:
+        summary_json_path, summary_png_path = write_pipeline_summary(results)
+        logger.info("Summary JSON generated: %s", summary_json_path)
+        logger.info("Summary chart generated: %s", summary_png_path)
+    except Exception:
+        logger.exception("Failed to generate pipeline summary artifacts")
+        has_errors = True
 
     return 1 if has_errors else 0

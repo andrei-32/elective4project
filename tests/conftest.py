@@ -27,11 +27,14 @@ def input_output_dirs(tmp_path, monkeypatch):
     """Set up input/ and output/ directories for processing tests."""
     input_dir = tmp_path / "input"
     output_dir = tmp_path / "output"
+    log_dir = tmp_path / "logs"
     input_dir.mkdir()
     output_dir.mkdir()
+    log_dir.mkdir()
 
     import src.config as config
     monkeypatch.setattr(config, "INPUT_DIR", input_dir)
     monkeypatch.setattr(config, "OUTPUT_DIR", output_dir)
+    monkeypatch.setattr(config, "LOG_DIR", log_dir)
 
     return input_dir, output_dir

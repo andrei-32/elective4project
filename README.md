@@ -13,6 +13,8 @@ A Python-based CSV data processing pipeline that automatically processes CSV fil
 
 - **Automated pipeline** – Runs on every push and pull request via GitHub Actions
 - **DevOps-ready** – Demonstrates CI/CD, automated testing, and collaboration
+- **Run reports** – Generates `output/pipeline_summary.json` and `output/pipeline_summary.png`
+- **Pipeline logs** – Saves run logs in `logs/pipeline.log` and errors in `logs/pipeline_errors.log`
 
 ## Project Structure
 
@@ -44,6 +46,10 @@ elective4project/
 2. **Add files** to the `input/` folder:
    - **.csv** → mask, checksum, encrypt
    - **.bin** (encrypted) → decrypt, checksum (requires ENCRYPTION_KEY)
+   - Or download an external CSV dataset:
+   ```bash
+   python -m src.download_csv --url "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv" --output "input/external_dataset.csv"
+   ```
 
 3. **Run the pipeline**
    ```bash
@@ -55,6 +61,14 @@ elective4project/
 > - When you push or create a pull request on GitHub, the pipeline runs automatically via GitHub Actions—no manual execution needed.
 
 4. **View results** in the `output/` folder
+   - `*_masked.csv` processed files
+   - `*.checksum` integrity files
+   - `pipeline_summary.json` summary of statuses
+   - `pipeline_summary.png` status visualization chart
+
+5. **Check logs** in the `logs/` folder
+   - `pipeline.log` complete run logs
+   - `pipeline_errors.log` error-only logs
 
 ## Example Input/Output
 
@@ -104,6 +118,8 @@ The workflow `.github/workflows/ci-csv-process.yml`:
 - **Triggers**: Push and pull requests to `main` or `master`
 - **Jobs**:
   - `process-csv` – Processes CSVs, uploads output artifacts
+      - Downloads an external CSV dataset (no manually created sample CSV)
+      - Uploads `logs/` artifacts and commits updated `output/` + `logs/` on push
   - `test` – Runs pytest
 
 ## Running Tests
