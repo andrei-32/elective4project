@@ -1,35 +1,18 @@
 {
   "total_files": 7,
   "status_counts": {
-    "ok": 5,
-    "skipped": 2,
+    "ok": 6,
+    "skipped": 1,
     "integrity_failed": 0,
     "error": 0
   },
   "results": [
     {
-      "file": "external_dataset.csv",
-      "status": "ok",
-      "outputs": [
-        "integrity_verified",
-        "external_dataset_masked.csv",
-        "external_dataset_masked.checksum"
-      ]
-    },
-    {
-      "file": "sample_data.csv",
-      "status": "ok",
-      "outputs": [
-        "integrity_verified",
-        "sample_data_masked.csv",
-        "sample_data_masked.checksum"
-      ]
-    },
-    {
       "file": "test.csv",
       "status": "ok",
       "outputs": [
         "integrity_verified",
+        "test_encrypted.bin",
         "test_masked.csv",
         "test_masked.checksum"
       ]
@@ -39,8 +22,29 @@
       "status": "ok",
       "outputs": [
         "integrity_verified",
+        "test1_encrypted.bin",
         "test1_masked.csv",
         "test1_masked.checksum"
+      ]
+    },
+    {
+      "file": "external_dataset.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "external_dataset_encrypted.bin",
+        "external_dataset_masked.csv",
+        "external_dataset_masked.checksum"
+      ]
+    },
+    {
+      "file": "sample_data.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "sample_data_encrypted.bin",
+        "sample_data_masked.csv",
+        "sample_data_masked.checksum"
       ]
     },
     {
@@ -48,6 +52,7 @@
       "status": "ok",
       "outputs": [
         "integrity_verified",
+        "test4_encrypted.bin",
         "test4_masked.csv",
         "test4_masked.checksum"
       ]
@@ -56,14 +61,14 @@
       "file": "testbin.bin",
       "status": "skipped",
       "outputs": [
-        "decryption_skipped_no_key"
+        "decryption_skipped_invalid_file"
       ]
     },
     {
       "file": "testing_bin.bin",
-      "status": "skipped",
+      "status": "ok",
       "outputs": [
-        "decryption_skipped_no_key"
+        "testing_bin_decrypted.csv"
       ]
     }
   ]
