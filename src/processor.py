@@ -53,8 +53,10 @@ def _configure_pipeline_logging() -> None:
 def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
     """Process a single CSV: verify → encrypt → mask → checksum."""
     result = {"file": str(csv_path.name), "status": "ok", "outputs": []}
+    file_output_dir = config.OUTPUT_DIR / csv_path.stem
+    file_output_dir.mkdir(parents=True, exist_ok=True)
     try:
-        if not verify_file_integrity(csv_path):
+        if not verify_file_integrity(csv_path, output_dir=file_output_dir):
             result["status"] = "integrity_failed"
             result["outputs"].append("integrity_verification_failed")
             return result
@@ -64,7 +66,7 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
         # Encrypt the original CSV
         if not skip_encryption:
             try:
-                enc_path = encrypt_csv_output(csv_path)
+                enc_path = encrypt_csv_output(csv_path, output_dir=file_output_dir)
                 result["outputs"].append(str(enc_path.name))
             except ValueError as e:
                 if "Encryption key not configured" in str(e):
@@ -73,10 +75,10 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
                     raise
 
         # Mask the original CSV for security
-        masked_path = mask_sensitive_columns(csv_path)
+        masked_path = mask_sensitive_columns(csv_path, output_dir=file_output_dir)
         result["outputs"].append(str(masked_path.name))
 
-        checksum_path, _ = generate_checksum(masked_path)
+        checksum_path, _ = generate_checksum(masked_path, output_dir=file_output_dir)
         result["outputs"].append(str(checksum_path.name))
 
     except Exception as e:
@@ -90,6 +92,9 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
 def _process_encrypted_file(bin_path: Path, skip_encryption: bool) -> dict:
     """Process a single .bin file: decrypt (separate process)."""
     result = {"file": str(bin_path.name), "status": "ok", "outputs": []}
+    stem = bin_path.stem.replace('_encrypted', '')
+    file_output_dir = config.OUTPUT_DIR / stem
+    file_output_dir.mkdir(parents=True, exist_ok=True)
     try:
         if skip_encryption:
             result["status"] = "skipped"
@@ -97,7 +102,7 @@ def _process_encrypted_file(bin_path: Path, skip_encryption: bool) -> dict:
             return result
 
         # Decrypt unmasked version
-        dec_path_unmasked = decrypt_csv_output(bin_path, mask=False)
+        dec_path_unmasked = decrypt_csv_output(bin_path, mask=False, output_dir=file_output_dir)
         result["outputs"].append(str(dec_path_unmasked.name))
 
     except Exception as e:
@@ -142,8 +147,10 @@ def process_all_csv_files(skip_encryption: bool = True) -> list[dict]:
 
     # Decrypt .bin files in output/ (e.g. from previous commits or same run)
     for bin_path in bin_in_output:
-        dec_name = bin_path.stem.replace("_encrypted", "_decrypted") + ".csv"
-        dec_path = config.OUTPUT_DIR / dec_name
+        stem = bin_path.stem.replace("_encrypted", "")
+        dec_name = stem + "_decrypted.csv"
+        file_output_dir = config.OUTPUT_DIR / stem
+        dec_path = file_output_dir / dec_name
         if dec_path.exists():
             continue  # Already decrypted
         results.append(_process_encrypted_file(bin_path, skip_encryption))

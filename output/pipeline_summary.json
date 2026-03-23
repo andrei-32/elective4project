@@ -1,12 +1,21 @@
 {
   "total_files": 7,
   "status_counts": {
-    "ok": 4,
-    "skipped": 3,
+    "ok": 5,
+    "skipped": 2,
     "integrity_failed": 0,
     "error": 0
   },
   "results": [
+    {
+      "file": "external_dataset.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "external_dataset_masked.csv",
+        "external_dataset_masked.checksum"
+      ]
+    },
     {
       "file": "sample_data.csv",
       "status": "ok",
@@ -52,13 +61,6 @@
     },
     {
       "file": "testing_bin.bin",
-      "status": "skipped",
-      "outputs": [
-        "decryption_skipped_no_key"
-      ]
-    },
-    {
-      "file": "test4_encrypted.bin",
       "status": "skipped",
       "outputs": [
         "decryption_skipped_no_key"

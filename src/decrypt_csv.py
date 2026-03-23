@@ -11,13 +11,14 @@ from . import config
 from .mask_sensitive_columns import mask_dataframe
 
 
-def decrypt_csv_output(csv_file: str | Path, mask: bool = False) -> Path:
+def decrypt_csv_output(csv_file: str | Path, mask: bool = False, output_dir: Path | None = None) -> Path:
     """
     Decrypt an encrypted CSV file and save the plaintext output.
 
     Args:
         csv_file: Path to the encrypted file (.bin) to decrypt.
         mask: If True, mask sensitive columns. If False, keep data unmasked (default).
+        output_dir: Optional directory for decrypted file (defaults to config.OUTPUT_DIR).
 
     Returns:
         Path to the decrypted CSV output file.
@@ -37,12 +38,13 @@ def decrypt_csv_output(csv_file: str | Path, mask: bool = False) -> Path:
 
     # Determine output filename based on mask parameter
     stem = encrypted_path.stem.replace('_encrypted', '')
+    target_dir = output_dir or config.OUTPUT_DIR
     if mask:
-        output_path = config.OUTPUT_DIR / f"{stem}_decrypted_masked.csv"
+        output_path = target_dir / f"{stem}_decrypted_masked.csv"
     else:
-        output_path = config.OUTPUT_DIR / f"{stem}_decrypted.csv"
+        output_path = target_dir / f"{stem}_decrypted.csv"
     
-    config.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    target_dir.mkdir(parents=True, exist_ok=True)
 
     key = config.DEFAULT_KEY
     fernet = Fernet(key.encode() if isinstance(key, str) else key)

@@ -19,7 +19,7 @@ def _normalize_for_hash(data: bytes) -> bytes:
         return data  # Binary file, hash as-is
 
 
-def generate_checksum(csv_file: str | Path) -> tuple[Path, str]:
+def generate_checksum(csv_file: str | Path, output_dir: Path | None = None) -> tuple[Path, str]:
     """
     Generate SHA-256 checksum for a file and save it.
 
@@ -27,6 +27,7 @@ def generate_checksum(csv_file: str | Path) -> tuple[Path, str]:
 
     Args:
         csv_file: Path to the file to checksum.
+        output_dir: Optional directory for checksum file (defaults to config.OUTPUT_DIR).
 
     Returns:
         Tuple of (path to checksum file, the checksum string).
@@ -43,8 +44,9 @@ def generate_checksum(csv_file: str | Path) -> tuple[Path, str]:
     checksum = hashlib.sha256(normalized).hexdigest()
 
     # Save checksum alongside the file (same stem, .checksum extension)
-    output_path = config.OUTPUT_DIR / f"{file_path.stem}{config.CHECKSUM_EXT}"
-    config.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    target_dir = output_dir or config.OUTPUT_DIR
+    output_path = target_dir / f"{file_path.stem}{config.CHECKSUM_EXT}"
+    target_dir.mkdir(parents=True, exist_ok=True)
 
     with open(output_path, "w") as f:
         f.write(checksum)

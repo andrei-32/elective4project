@@ -22,8 +22,8 @@ def test_process_all_csv_files(sample_csv, input_output_dirs):
     assert len(results) == 1
     assert results[0]["status"] == "ok"
     assert "sample_masked.csv" in results[0]["outputs"]
-    assert (output_dir / "sample_masked.csv").exists()
-    assert (output_dir / "sample_masked.checksum").exists()
+    assert (output_dir / "sample" / "sample_masked.csv").exists()
+    assert (output_dir / "sample" / "sample_masked.checksum").exists()
 
 
 def test_process_all_integrity_failed(sample_csv, input_output_dirs):
@@ -33,7 +33,7 @@ def test_process_all_integrity_failed(sample_csv, input_output_dirs):
     csv_path.write_text(sample_csv.read_text())
     from src.generate_checksum import generate_checksum
 
-    generate_checksum(csv_path)  # Create checksum
+    generate_checksum(csv_path, output_dir=output_dir / "sample")  # Create checksum in subfolder
     csv_path.write_text(sample_csv.read_text() + "\nTampered,data,xxx,0")  # Tamper
 
     results = process_all_csv_files(skip_encryption=True)
@@ -41,7 +41,7 @@ def test_process_all_integrity_failed(sample_csv, input_output_dirs):
     assert len(results) == 1
     assert results[0]["status"] == "integrity_failed"
     assert "integrity_verification_failed" in results[0]["outputs"]
-    assert not (output_dir / "sample_masked.csv").exists()
+    assert not (output_dir / "sample" / "sample_masked.csv").exists()
 
 
 def test_process_bin_file_skipped_without_key(input_output_dirs):
@@ -78,6 +78,6 @@ def test_process_bin_file_decrypts_with_key(sample_csv, input_output_dirs, monke
     assert len(results) == 1
     assert results[0]["status"] == "ok"
     assert "sample_decrypted.csv" in results[0]["outputs"]
-    dec_path = output_dir / "sample_decrypted.csv"
+    dec_path = output_dir / "sample" / "sample_decrypted.csv"
     assert dec_path.exists()
     assert dec_path.read_text() == sample_csv.read_text()

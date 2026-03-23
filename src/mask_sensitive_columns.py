@@ -137,13 +137,14 @@ def mask_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     return df_masked
 
 
-def mask_sensitive_columns(csv_file: str | Path) -> Path:
+def mask_sensitive_columns(csv_file: str | Path, output_dir: Path | None = None) -> Path:
     csv_path = Path(csv_file)
     if not csv_path.exists():
         raise FileNotFoundError(f"CSV file not found: {csv_path}")
 
-    output_path = config.OUTPUT_DIR / f"{csv_path.stem}_masked.csv"
-    config.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    target_dir = output_dir or config.OUTPUT_DIR
+    output_path = target_dir / f"{csv_path.stem}_masked.csv"
+    target_dir.mkdir(parents=True, exist_ok=True)
 
     df = _read_csv_flexible(csv_path)
     df_masked = mask_dataframe(df)

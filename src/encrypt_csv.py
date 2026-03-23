@@ -12,13 +12,14 @@ import base64
 from . import config
 
 
-def encrypt_csv_output(csv_file: str | Path) -> Path:
+def encrypt_csv_output(csv_file: str | Path, output_dir: Path | None = None) -> Path:
 
     """
     Encrypt a CSV file and save the encrypted output.
 
     Args:
         csv_file: Path to the CSV file to encrypt.
+        output_dir: Optional directory for encrypted file (defaults to config.OUTPUT_DIR).
 
     Returns:
         Path to the encrypted output file.
@@ -37,8 +38,9 @@ def encrypt_csv_output(csv_file: str | Path) -> Path:
             "Encryption key not configured. Set ENCRYPTION_KEY environment variable."
         )
 
-    output_path = config.OUTPUT_DIR / f"{csv_path.stem}_encrypted.bin"
-    config.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    target_dir = output_dir or config.OUTPUT_DIR
+    output_path = target_dir / f"{csv_path.stem}_encrypted.bin"
+    target_dir.mkdir(parents=True, exist_ok=True)
 
     key = config.DEFAULT_KEY
     fernet = Fernet(key.encode() if isinstance(key, str) else key)
