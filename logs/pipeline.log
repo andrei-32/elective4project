@@ -1,10 +1,11 @@
-2026-03-23 13:08:21,947 | WARNING | src.processor | Skipping testbin.bin: Decryption failed. Invalid or wrong encryption key.
-2026-03-23 13:08:21,947 | INFO | src.processor | test.csv: ok -> ['integrity_verified', 'test_encrypted.bin', 'test_masked.csv', 'test_masked.checksum']
-2026-03-23 13:08:21,947 | INFO | src.processor | test1.csv: ok -> ['integrity_verified', 'test1_encrypted.bin', 'test1_masked.csv', 'test1_masked.checksum']
-2026-03-23 13:08:21,947 | INFO | src.processor | external_dataset.csv: ok -> ['integrity_verified', 'external_dataset_encrypted.bin', 'external_dataset_masked.csv', 'external_dataset_masked.checksum']
-2026-03-23 13:08:21,947 | INFO | src.processor | sample_data.csv: ok -> ['integrity_verified', 'sample_data_encrypted.bin', 'sample_data_masked.csv', 'sample_data_masked.checksum']
-2026-03-23 13:08:21,947 | INFO | src.processor | test4.csv: ok -> ['integrity_verified', 'test4_encrypted.bin', 'test4_masked.csv', 'test4_masked.checksum']
-2026-03-23 13:08:21,947 | INFO | src.processor | testbin.bin: skipped -> ['decryption_skipped_invalid_file']
-2026-03-23 13:08:21,948 | INFO | src.processor | testing_bin.bin: ok -> ['testing_bin_decrypted.csv']
-2026-03-23 13:08:22,052 | INFO | src.processor | Summary JSON generated: /home/runner/work/elective4project/elective4project/output/pipeline_summary.json
-2026-03-23 13:08:22,052 | INFO | src.processor | Summary chart generated: /home/runner/work/elective4project/elective4project/output/pipeline_summary.png
+2026-03-23 21:11:27,787 | INFO | src.processor | ENCRYPTION_KEY not set - encryption/decryption will be skipped.
+2026-03-23 21:11:28,068 | INFO | src.processor | bad_data.csv: ok -> ['integrity_verified', 'bad_data_masked.csv', 'bad_data_masked.checksum']
+2026-03-23 21:11:28,068 | INFO | src.processor | external_dataset.csv: ok -> ['integrity_verified', 'external_dataset_masked.csv', 'external_dataset_masked.checksum']
+2026-03-23 21:11:28,068 | INFO | src.processor | sample_data.csv: ok -> ['integrity_verified', 'sample_data_masked.csv', 'sample_data_masked.checksum']
+2026-03-23 21:11:28,068 | INFO | src.processor | test.csv: ok -> ['integrity_verified', 'test_masked.csv', 'test_masked.checksum']
+2026-03-23 21:11:28,069 | INFO | src.processor | test1.csv: ok -> ['integrity_verified', 'test1_masked.csv', 'test1_masked.checksum']
+2026-03-23 21:11:28,069 | INFO | src.processor | test4.csv: ok -> ['integrity_verified', 'test4_masked.csv', 'test4_masked.checksum']
+2026-03-23 21:11:28,069 | INFO | src.processor | testbin.bin: skipped -> ['decryption_skipped_no_key']
+2026-03-23 21:11:28,069 | INFO | src.processor | testing_bin.bin: skipped -> ['decryption_skipped_no_key']
+2026-03-23 21:11:28,335 | INFO | src.processor | Summary JSON generated: C:\Users\Andrei\Documents\GitHub\elective4project\output\pipeline_summary.json
+2026-03-23 21:11:28,335 | INFO | src.processor | Summary chart generated: C:\Users\Andrei\Documents\GitHub\elective4project\output\pipeline_summary.png
