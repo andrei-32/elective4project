@@ -105,6 +105,11 @@ def _process_encrypted_file(bin_path: Path, skip_encryption: bool) -> dict:
         dec_path_unmasked = decrypt_csv_output(bin_path, mask=False, output_dir=file_output_dir)
         result["outputs"].append(str(dec_path_unmasked.name))
 
+    except ValueError as e:
+        # Invalid or corrupt encrypted file — warn but don't fail the pipeline
+        logger.warning("Skipping %s: %s", bin_path.name, e)
+        result["status"] = "skipped"
+        result["outputs"].append("decryption_skipped_invalid_file")
     except Exception as e:
         logger.exception("Error decrypting %s", bin_path.name)
         result["status"] = "error"
