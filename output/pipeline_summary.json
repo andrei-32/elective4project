@@ -1,12 +1,22 @@
 {
-  "total_files": 3,
+  "total_files": 4,
   "status_counts": {
-    "ok": 3,
+    "ok": 4,
     "skipped": 0,
     "integrity_failed": 0,
     "error": 0
   },
   "results": [
+    {
+      "file": "tampered_test.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "tampered_test_encrypted.bin",
+        "tampered_test_masked.csv",
+        "tampered_test_masked.checksum"
+      ]
+    },
     {
       "file": "sample_data2.csv",
       "status": "ok",

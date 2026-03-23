@@ -1,5 +1,6 @@
-2026-03-23 13:51:16,525 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_encrypted.bin', 'sample_data2_masked.csv', 'sample_data2_masked.checksum']
-2026-03-23 13:51:16,525 | INFO | src.processor | emailtry.csv: ok -> ['integrity_verified', 'emailtry_encrypted.bin', 'emailtry_masked.csv', 'emailtry_masked.checksum']
-2026-03-23 13:51:16,525 | INFO | src.processor | external_dataset.csv: ok -> ['integrity_verified', 'external_dataset_encrypted.bin', 'external_dataset_masked.csv', 'external_dataset_masked.checksum']
-2026-03-23 13:51:16,628 | INFO | src.processor | Summary JSON generated: /home/runner/work/elective4project/elective4project/output/pipeline_summary.json
-2026-03-23 13:51:16,628 | INFO | src.processor | Summary chart generated: /home/runner/work/elective4project/elective4project/output/pipeline_summary.png
+2026-03-23 13:53:31,066 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_encrypted.bin', 'tampered_test_masked.csv', 'tampered_test_masked.checksum']
+2026-03-23 13:53:31,066 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_encrypted.bin', 'sample_data2_masked.csv', 'sample_data2_masked.checksum']
+2026-03-23 13:53:31,066 | INFO | src.processor | emailtry.csv: ok -> ['integrity_verified', 'emailtry_encrypted.bin', 'emailtry_masked.csv', 'emailtry_masked.checksum']
+2026-03-23 13:53:31,066 | INFO | src.processor | external_dataset.csv: ok -> ['integrity_verified', 'external_dataset_encrypted.bin', 'external_dataset_masked.csv', 'external_dataset_masked.checksum']
+2026-03-23 13:53:31,183 | INFO | src.processor | Summary JSON generated: /home/runner/work/elective4project/elective4project/output/pipeline_summary.json
+2026-03-23 13:53:31,183 | INFO | src.processor | Summary chart generated: /home/runner/work/elective4project/elective4project/output/pipeline_summary.png
