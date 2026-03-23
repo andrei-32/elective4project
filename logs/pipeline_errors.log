@@ -1,0 +1,35 @@
+2026-03-23 21:20:46,314 | ERROR | src.processor | Error processing empty_file.csv
+Traceback (most recent call last):
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 112, in _read_csv_flexible
+    df = pd.read_csv(csv_path, **options)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\io\parsers\readers.py", line 1898, in _make_engine
+    return mapping[engine](f, **self.options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 93, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "parsers.pyx", line 581, in pandas._libs.parsers.TextReader.__cinit__
+pandas.errors.EmptyDataError: No columns to parse from file
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\processor.py", line 78, in _process_csv_file
+    masked_path = mask_sensitive_columns(csv_path, output_dir=file_output_dir)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 149, in mask_sensitive_columns
+    df = _read_csv_flexible(csv_path)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 119, in _read_csv_flexible
+    raise ValueError(f"Unable to parse CSV file: {csv_path}") from last_error
+ValueError: Unable to parse CSV file: C:\Users\Andrei\Documents\GitHub\elective4project\input\empty_file.csv

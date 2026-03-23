@@ -1,8 +1,0 @@
-name,email,ssn,amount
-Alice,alice@example.com,123-45-6789,100
-Bob,bob@example.com,987-65-4321,200
-"Unclosed quote,missing@email.com,111-22-3333,300
-Charlie,charlie@example.com,444-55-6666,not_a_number
-,,,
-Eve,eve@example.com,777-88-9999
-Frank,frank@example.com,000-11-2222,500,extra_column,more_extra
