@@ -1,22 +1,12 @@
 {
-  "total_files": 6,
+  "total_files": 4,
   "status_counts": {
     "ok": 4,
     "skipped": 0,
     "integrity_failed": 0,
-    "error": 2
+    "error": 0
   },
   "results": [
-    {
-      "file": "empty_test.csv",
-      "status": "error",
-      "outputs": [
-        "integrity_verified",
-        "empty_test_encrypted.bin",
-        "empty_test_security_summary.png"
-      ],
-      "error": "Unable to parse CSV file: /home/runner/work/elective4project/elective4project/input/empty_test.csv"
-    },
     {
       "file": "tampered_test.csv",
       "status": "ok",
@@ -60,16 +50,6 @@
         "external_dataset_masked.checksum",
         "external_dataset_security_summary.png"
       ]
-    },
-    {
-      "file": "empty try.csv",
-      "status": "error",
-      "outputs": [
-        "integrity_verified",
-        "empty try_encrypted.bin",
-        "empty try_security_summary.png"
-      ],
-      "error": "Unable to parse CSV file: /home/runner/work/elective4project/elective4project/input/empty try.csv"
     }
   ]
 }
