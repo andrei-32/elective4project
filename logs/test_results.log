@@ -36,4 +36,4 @@ tests/test_verify_file_integrity.py::test_verify_file_integrity_unchanged_file P
 tests/test_verify_file_integrity.py::test_verify_file_integrity_tampered_file PASSED [ 94%]
 tests/test_verify_file_integrity.py::test_verify_file_integrity_file_not_found PASSED [100%]
 
-============================== 19 passed in 1.72s ==============================
+============================== 19 passed in 2.31s ==============================
