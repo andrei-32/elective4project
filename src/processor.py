@@ -55,8 +55,10 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
     result = {"file": str(csv_path.name), "status": "ok", "outputs": []}
     file_output_dir = config.OUTPUT_DIR / csv_path.stem
     file_output_dir.mkdir(parents=True, exist_ok=True)
+    from .reporting import generate_file_security_summary
     try:
-        if not verify_file_integrity(csv_path, output_dir=file_output_dir):
+        integrity_verified = verify_file_integrity(csv_path, output_dir=file_output_dir)
+        if not integrity_verified:
             result["status"] = "integrity_failed"
             result["outputs"].append("integrity_verification_failed")
             return result
@@ -64,6 +66,7 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
         result["outputs"].append("integrity_verified")
 
         # Encrypt the original CSV
+        enc_path = None
         if not skip_encryption:
             try:
                 enc_path = encrypt_csv_output(csv_path, output_dir=file_output_dir)
@@ -80,6 +83,18 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
 
         checksum_path, _ = generate_checksum(masked_path, output_dir=file_output_dir)
         result["outputs"].append(str(checksum_path.name))
+
+        # Generate per-file security summary image
+        summary_img_path = generate_file_security_summary(
+            file_path=csv_path,
+            masked_path=masked_path,
+            encrypted_path=enc_path if enc_path else Path(),
+            checksum_path=checksum_path,
+            integrity_verified=integrity_verified,
+            status=result["status"],
+            output_dir=file_output_dir,
+        )
+        result["outputs"].append(str(summary_img_path.name))
 
     except Exception as e:
         logger.exception("Error processing %s", csv_path.name)

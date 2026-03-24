@@ -20,6 +20,8 @@ def _sensitive_kind(column_name: str) -> str | None:
         return "card"
     if "phone" in col_lower:
         return "phone"
+    if "identifier" in col_lower or "id_number" in col_lower or "student_id" in col_lower or "studentid" in col_lower:
+        return "identifier"
     return "generic" if any(pattern in col_lower for pattern in config.SENSITIVE_COLUMN_PATTERNS) else None
 
 
@@ -96,24 +98,45 @@ def _mask_phone(value: str) -> str:
 
 
 def _read_csv_flexible(csv_path: Path) -> pd.DataFrame:
+    """
+    Try to read a CSV with various encodings and delimiters. Handles mixed delimiters and scientific notation.
+    """
+    import csv
     last_error = None
     encodings = ["utf-8-sig", "utf-8", "latin-1"]
-    separators = [None, ",", ";", "\t", "|"]
+    delimiters = [",", ";", "\t", "|"]
 
+    # Try pandas default first
     for encoding in encodings:
-        for separator in separators:
+        try:
+            df = pd.read_csv(csv_path, encoding=encoding, on_bad_lines="skip")
+            if len(df.columns) > 1 or not df.empty:
+                return df
+        except Exception as exc:
+            last_error = exc
+
+    # Try with explicit delimiters
+    for encoding in encodings:
+        for delimiter in delimiters:
             try:
-                options = {"encoding": encoding, "on_bad_lines": "skip"}
-                if separator is None:
-                    options["sep"] = None
-                    options["engine"] = "python"
-                else:
-                    options["sep"] = separator
-                df = pd.read_csv(csv_path, **options)
+                df = pd.read_csv(csv_path, encoding=encoding, sep=delimiter, on_bad_lines="skip")
                 if len(df.columns) > 1 or not df.empty:
                     return df
             except Exception as exc:
                 last_error = exc
+
+    # Try csv.Sniffer to auto-detect delimiter
+    for encoding in encodings:
+        try:
+            with open(csv_path, "r", encoding=encoding) as f:
+                sample = f.read(2048)
+                sniffer = csv.Sniffer()
+                dialect = sniffer.sniff(sample)
+                df = pd.read_csv(csv_path, encoding=encoding, sep=dialect.delimiter, on_bad_lines="skip")
+                if len(df.columns) > 1 or not df.empty:
+                    return df
+        except Exception as exc:
+            last_error = exc
 
     if last_error is not None:
         raise ValueError(f"Unable to parse CSV file: {csv_path}") from last_error
@@ -132,6 +155,21 @@ def mask_dataframe(df: pd.DataFrame) -> pd.DataFrame:
             df_masked[col] = df_masked[col].apply(_mask_credit_card)
         elif kind == "phone":
             df_masked[col] = df_masked[col].apply(_mask_phone)
+        elif kind == "identifier":
+            # Mask identifier columns, preserving scientific notation as string
+            def mask_identifier(val):
+                if pd.isna(val):
+                    return val
+                val_str = str(val)
+                # If scientific notation, keep as string and mask all but last 3 digits
+                if "e" in val_str.lower():
+                    digits = re.sub(r"\D", "", val_str)
+                    if len(digits) > 3:
+                        return "*" * (len(digits) - 3) + digits[-3:]
+                    return "*" * len(digits)
+                # Otherwise, mask as normal
+                return _mask_value(val_str)
+            df_masked[col] = df_masked[col].apply(mask_identifier)
         elif kind == "generic":
             df_masked[col] = df_masked[col].apply(_mask_value)
     return df_masked
