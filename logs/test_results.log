@@ -1,0 +1,5 @@
+INFO     matplotlib.font_manager:font_manager.py:1107 Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: Can not load face (unknown file format; error code 0x2)
+INFO     matplotlib.font_manager:font_manager.py:1639 generated new fontManager
+INFO     src.processor:processor.py:179 No CSV or .bin files found in input or output directory.
+INFO     src.reporting:reporting.py:66 Wrote summary report: output/pipeline_summary.json
+INFO     src.reporting:reporting.py:67 Wrote summary chart: output/pipeline_summary.png
