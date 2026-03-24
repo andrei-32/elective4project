@@ -1,6 +1,0 @@
-name,email,ssn,credit_card,phone,identifier
-Alice,alice@example.com,123-45-6789,4111111111111111,555-0101,ID-001
-Bob,bob@example.com,987-65-4321,5500000000000004,555-0102,ID-002
-Carol,carol@example.com,111-22-3333,340000000000009,555-0103,ID-003
-Dave,dave@example.com,444-55-6666,6011000000000004,555-0104,ID-004
-Eve,eve@example.com,777-88-9999,3530111333300000,555-0105,ID-005
