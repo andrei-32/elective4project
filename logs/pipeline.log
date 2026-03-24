@@ -1,6 +1,6 @@
-2026-03-24 13:53:16,677 | INFO | src.processor | ENCRYPTION_KEY not set - encryption/decryption will be skipped.
-2026-03-24 13:53:20,475 | INFO | src.processor | emailtry.csv: ok -> ['integrity_verified', 'emailtry_masked.csv', 'emailtry_masked.checksum', 'emailtry_security_summary.png']
-2026-03-24 13:53:20,475 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
-2026-03-24 13:53:20,475 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
-2026-03-24 13:53:20,591 | INFO | src.processor | Summary JSON generated: output\pipeline_summary.json
-2026-03-24 13:53:20,591 | INFO | src.processor | Summary chart generated: output\pipeline_summary.png
+2026-03-24 05:54:47,160 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_encrypted.bin', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
+2026-03-24 05:54:47,160 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_encrypted.bin', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
+2026-03-24 05:54:47,160 | INFO | src.processor | emailtry.csv: ok -> ['integrity_verified', 'emailtry_encrypted.bin', 'emailtry_masked.csv', 'emailtry_masked.checksum', 'emailtry_security_summary.png']
+2026-03-24 05:54:47,160 | INFO | src.processor | external_dataset.csv: ok -> ['integrity_verified', 'external_dataset_encrypted.bin', 'external_dataset_masked.csv', 'external_dataset_masked.checksum', 'external_dataset_security_summary.png']
+2026-03-24 05:54:47,266 | INFO | src.processor | Summary JSON generated: output/pipeline_summary.json
+2026-03-24 05:54:47,266 | INFO | src.processor | Summary chart generated: output/pipeline_summary.png
