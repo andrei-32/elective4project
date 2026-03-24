@@ -1,4 +1,4 @@
-2026-03-24 06:12:07,480 | ERROR | src.processor | Error processing empty_test.csv
+2026-03-24 06:30:25,362 | ERROR | src.processor | Error processing empty_test.csv
 Traceback (most recent call last):
   File "/home/runner/work/elective4project/elective4project/src/mask_sensitive_columns.py", line 134, in _read_csv_flexible
     dialect = sniffer.sniff(sample)
@@ -19,7 +19,7 @@ Traceback (most recent call last):
   File "/home/runner/work/elective4project/elective4project/src/mask_sensitive_columns.py", line 142, in _read_csv_flexible
     raise ValueError(f"Unable to parse CSV file: {csv_path}") from last_error
 ValueError: Unable to parse CSV file: /home/runner/work/elective4project/elective4project/input/empty_test.csv
-2026-03-24 06:12:09,085 | ERROR | src.processor | Error processing empty try.csv
+2026-03-24 06:30:26,947 | ERROR | src.processor | Error processing empty try.csv
 Traceback (most recent call last):
   File "/home/runner/work/elective4project/elective4project/src/mask_sensitive_columns.py", line 134, in _read_csv_flexible
     dialect = sniffer.sniff(sample)
