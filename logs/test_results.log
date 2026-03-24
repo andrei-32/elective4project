@@ -1,5 +1,39 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.15, pytest-9.0.2, pluggy-1.6.0 -- /opt/hostedtoolcache/Python/3.11.15/x64/bin/python
+cachedir: .pytest_cache
+rootdir: /home/runner/work/elective4project/elective4project
+configfile: pytest.ini
+collecting ... 
+----------------------------- live log collection ------------------------------
 INFO     matplotlib.font_manager:font_manager.py:1107 Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: Can not load face (unknown file format; error code 0x2)
 INFO     matplotlib.font_manager:font_manager.py:1639 generated new fontManager
+collected 19 items
+
+tests/test_encrypt_decrypt.py::test_encrypt_decrypt_roundtrip PASSED     [  5%]
+tests/test_encrypt_decrypt.py::test_encrypt_without_key PASSED           [ 10%]
+tests/test_encrypt_decrypt.py::test_decrypt_wrong_key PASSED             [ 15%]
+tests/test_generate_checksum.py::test_generate_checksum PASSED           [ 21%]
+tests/test_generate_checksum.py::test_generate_checksum_deterministic PASSED [ 26%]
+tests/test_generate_checksum.py::test_generate_checksum_file_not_found PASSED [ 31%]
+tests/test_mask_sensitive_columns.py::test_mask_sensitive_columns PASSED [ 36%]
+tests/test_mask_sensitive_columns.py::test_mask_sensitive_columns_file_not_found PASSED [ 42%]
+tests/test_mask_sensitive_columns.py::test_mask_sensitive_columns_semicolon_csv PASSED [ 47%]
+tests/test_processor.py::test_process_all_empty_input 
+-------------------------------- live log call ---------------------------------
 INFO     src.processor:processor.py:179 No CSV or .bin files found in input or output directory.
+PASSED                                                                   [ 52%]
+tests/test_processor.py::test_process_all_csv_files PASSED               [ 57%]
+tests/test_processor.py::test_process_all_integrity_failed PASSED        [ 63%]
+tests/test_processor.py::test_process_bin_file_skipped_without_key PASSED [ 68%]
+tests/test_processor.py::test_process_bin_file_decrypts_with_key PASSED  [ 73%]
+tests/test_reporting.py::test_write_pipeline_summary_creates_json_and_chart 
+-------------------------------- live log call ---------------------------------
 INFO     src.reporting:reporting.py:66 Wrote summary report: output/pipeline_summary.json
 INFO     src.reporting:reporting.py:67 Wrote summary chart: output/pipeline_summary.png
+PASSED                                                                   [ 78%]
+tests/test_verify_file_integrity.py::test_verify_file_integrity_first_run PASSED [ 84%]
+tests/test_verify_file_integrity.py::test_verify_file_integrity_unchanged_file PASSED [ 89%]
+tests/test_verify_file_integrity.py::test_verify_file_integrity_tampered_file PASSED [ 94%]
+tests/test_verify_file_integrity.py::test_verify_file_integrity_file_not_found PASSED [100%]
+
+============================== 19 passed in 1.73s ==============================
