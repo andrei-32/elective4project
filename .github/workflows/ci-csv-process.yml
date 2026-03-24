@@ -33,8 +33,8 @@ jobs:
         run: |
           python -m src.download_csv --url "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv" --output "input/external_dataset.csv"
 
-      - name: Run tests
-        run: pytest tests/ -v
+      - name: Run tests and capture all output
+        run: pytest tests/ -v > logs/test_results.log 2>&1
       
       - name: Commit and push test results log
         if: always() && github.event_name == 'push'
