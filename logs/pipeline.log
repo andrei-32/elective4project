@@ -1,5 +1,5 @@
-2026-03-24 12:04:18,373 | INFO | src.processor | ENCRYPTION_KEY not set - encryption/decryption will be skipped.
-2026-03-24 12:04:18,880 | ERROR | src.processor | Error processing corrupt_file.csv
+2026-03-24 12:10:58,225 | INFO | src.processor | ENCRYPTION_KEY not set - encryption/decryption will be skipped.
+2026-03-24 12:10:58,755 | ERROR | src.processor | Error processing corrupt_file.csv
 Traceback (most recent call last):
   File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 134, in _read_csv_flexible
     dialect = sniffer.sniff(sample)
@@ -20,12 +20,12 @@ Traceback (most recent call last):
   File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 142, in _read_csv_flexible
     raise ValueError(f"Unable to parse CSV file: {csv_path}") from last_error
 ValueError: Unable to parse CSV file: C:\Users\Andrei\Documents\GitHub\elective4project\input\corrupt_file.csv
-2026-03-24 12:04:20,312 | INFO | src.processor | clean_ok_test.csv: ok -> ['integrity_verified', 'clean_ok_test_masked.csv', 'clean_ok_test_masked.checksum', 'clean_ok_test_security_summary.png']
-2026-03-24 12:04:20,312 | INFO | src.processor | corrupt_file.csv: error -> ['integrity_verified']
-2026-03-24 12:04:20,312 | INFO | src.processor | emailtry.csv: ok -> ['integrity_verified', 'emailtry_masked.csv', 'emailtry_masked.checksum', 'emailtry_security_summary.png']
-2026-03-24 12:04:20,312 | INFO | src.processor | integrity_fail_test.csv: integrity_failed -> ['integrity_verification_failed']
-2026-03-24 12:04:20,312 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
-2026-03-24 12:04:20,312 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
-2026-03-24 12:04:20,313 | INFO | src.processor | skip_test.bin: skipped -> ['decryption_skipped_no_key']
-2026-03-24 12:04:20,515 | INFO | src.processor | Summary JSON generated: output\pipeline_summary.json
-2026-03-24 12:04:20,516 | INFO | src.processor | Summary chart generated: output\pipeline_summary.png
+2026-03-24 12:11:00,295 | INFO | src.processor | clean_ok_test.csv: ok -> ['integrity_verified', 'clean_ok_test_masked.csv', 'clean_ok_test_masked.checksum', 'clean_ok_test_security_summary.png']
+2026-03-24 12:11:00,295 | INFO | src.processor | corrupt_file.csv: error -> ['integrity_verified']
+2026-03-24 12:11:00,295 | INFO | src.processor | emailtry.csv: ok -> ['integrity_verified', 'emailtry_masked.csv', 'emailtry_masked.checksum', 'emailtry_security_summary.png']
+2026-03-24 12:11:00,295 | INFO | src.processor | integrity_fail_test.csv: integrity_failed -> ['integrity_verification_failed']
+2026-03-24 12:11:00,295 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
+2026-03-24 12:11:00,295 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
+2026-03-24 12:11:00,295 | INFO | src.processor | skip_test.bin: skipped -> ['decryption_skipped_no_key']
+2026-03-24 12:11:00,481 | INFO | src.processor | Summary JSON generated: output\pipeline_summary.json
+2026-03-24 12:11:00,481 | INFO | src.processor | Summary chart generated: output\pipeline_summary.png

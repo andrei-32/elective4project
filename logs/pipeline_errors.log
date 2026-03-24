@@ -1,4 +1,4 @@
-2026-03-24 12:04:18,880 | ERROR | src.processor | Error processing corrupt_file.csv
+2026-03-24 12:10:58,755 | ERROR | src.processor | Error processing corrupt_file.csv
 Traceback (most recent call last):
   File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 134, in _read_csv_flexible
     dialect = sniffer.sniff(sample)

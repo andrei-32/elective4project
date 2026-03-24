@@ -181,7 +181,7 @@ def generate_file_security_summary(
     fig = plt.figure(figsize=(14, 9), facecolor="#ffffff")
     gs = gridspec.GridSpec(
         3, 2,
-        height_ratios=[0.18, 1.0, 1.0],
+        height_ratios=[0.30, 1.0, 1.0],
         width_ratios=[1, 1],
         hspace=0.30,
         wspace=0.45,
@@ -198,15 +198,15 @@ def generate_file_security_summary(
         edgecolor="none", zorder=0,
     ))
     ax_title.text(
-        0.5, 0.55, "Security Summary",
+        0.5, 0.62, "Security Summary",
         ha="center", va="center",
         fontsize=28, fontweight="bold", color=TITLE_FG,
         family="DejaVu Sans",
     )
     ax_title.text(
-        0.5, 0.12, file_path.name,
+        0.5, 0.22, file_path.name,
         ha="center", va="center",
-        fontsize=14, color="#adb5bd", family="DejaVu Sans",
+        fontsize=17, color="#adb5bd", family="DejaVu Sans",
     )
 
     # ── Table (row 1, spans both cols) ─────────────────────────────────
