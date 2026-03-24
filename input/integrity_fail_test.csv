@@ -1,0 +1,4 @@
+name,email,ssn,amount
+Alice,alice@example.com,123-45-6789,100
+Bob,bob@example.com,987-65-4321,200
+Carol,carol@example.com,111-22-3333,300

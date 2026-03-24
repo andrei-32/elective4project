@@ -1,0 +1,21 @@
+2026-03-24 12:04:18,880 | ERROR | src.processor | Error processing corrupt_file.csv
+Traceback (most recent call last):
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 134, in _read_csv_flexible
+    dialect = sniffer.sniff(sample)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 194, in sniff
+    raise Error("Could not determine delimiter")
+_csv.Error: Could not determine delimiter
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\processor.py", line 81, in _process_csv_file
+    masked_path = mask_sensitive_columns(csv_path, output_dir=file_output_dir)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 187, in mask_sensitive_columns
+    df = _read_csv_flexible(csv_path)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 142, in _read_csv_flexible
+    raise ValueError(f"Unable to parse CSV file: {csv_path}") from last_error
+ValueError: Unable to parse CSV file: C:\Users\Andrei\Documents\GitHub\elective4project\input\corrupt_file.csv

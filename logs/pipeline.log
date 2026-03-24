@@ -1,6 +1,31 @@
-2026-03-24 11:16:47,621 | INFO | src.processor | ENCRYPTION_KEY not set - encryption/decryption will be skipped.
-2026-03-24 11:16:50,741 | INFO | src.processor | emailtry.csv: ok -> ['integrity_verified', 'emailtry_masked.csv', 'emailtry_masked.checksum', 'emailtry_security_summary.png']
-2026-03-24 11:16:50,742 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
-2026-03-24 11:16:50,742 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
-2026-03-24 11:16:50,949 | INFO | src.processor | Summary JSON generated: output\pipeline_summary.json
-2026-03-24 11:16:50,950 | INFO | src.processor | Summary chart generated: output\pipeline_summary.png
+2026-03-24 12:04:18,373 | INFO | src.processor | ENCRYPTION_KEY not set - encryption/decryption will be skipped.
+2026-03-24 12:04:18,880 | ERROR | src.processor | Error processing corrupt_file.csv
+Traceback (most recent call last):
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 134, in _read_csv_flexible
+    dialect = sniffer.sniff(sample)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\AppData\Local\Programs\Python\Python312\Lib\csv.py", line 194, in sniff
+    raise Error("Could not determine delimiter")
+_csv.Error: Could not determine delimiter
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\processor.py", line 81, in _process_csv_file
+    masked_path = mask_sensitive_columns(csv_path, output_dir=file_output_dir)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 187, in mask_sensitive_columns
+    df = _read_csv_flexible(csv_path)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Andrei\Documents\GitHub\elective4project\src\mask_sensitive_columns.py", line 142, in _read_csv_flexible
+    raise ValueError(f"Unable to parse CSV file: {csv_path}") from last_error
+ValueError: Unable to parse CSV file: C:\Users\Andrei\Documents\GitHub\elective4project\input\corrupt_file.csv
+2026-03-24 12:04:20,312 | INFO | src.processor | clean_ok_test.csv: ok -> ['integrity_verified', 'clean_ok_test_masked.csv', 'clean_ok_test_masked.checksum', 'clean_ok_test_security_summary.png']
+2026-03-24 12:04:20,312 | INFO | src.processor | corrupt_file.csv: error -> ['integrity_verified']
+2026-03-24 12:04:20,312 | INFO | src.processor | emailtry.csv: ok -> ['integrity_verified', 'emailtry_masked.csv', 'emailtry_masked.checksum', 'emailtry_security_summary.png']
+2026-03-24 12:04:20,312 | INFO | src.processor | integrity_fail_test.csv: integrity_failed -> ['integrity_verification_failed']
+2026-03-24 12:04:20,312 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
+2026-03-24 12:04:20,312 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
+2026-03-24 12:04:20,313 | INFO | src.processor | skip_test.bin: skipped -> ['decryption_skipped_no_key']
+2026-03-24 12:04:20,515 | INFO | src.processor | Summary JSON generated: output\pipeline_summary.json
+2026-03-24 12:04:20,516 | INFO | src.processor | Summary chart generated: output\pipeline_summary.png

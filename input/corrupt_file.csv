@@ -1,0 +1,4 @@
+This is not valid CSV content at all
+ÿþ binary garbage §±³ \x00\x01\x02 €€€
+"unclosed quote, missing columns
+name,email

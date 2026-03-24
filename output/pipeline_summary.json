@@ -1,12 +1,30 @@
 {
-  "total_files": 3,
+  "total_files": 7,
   "status_counts": {
-    "ok": 3,
-    "skipped": 0,
-    "integrity_failed": 0,
-    "error": 0
+    "ok": 4,
+    "skipped": 1,
+    "integrity_failed": 1,
+    "error": 1
   },
   "results": [
+    {
+      "file": "clean_ok_test.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "clean_ok_test_masked.csv",
+        "clean_ok_test_masked.checksum",
+        "clean_ok_test_security_summary.png"
+      ]
+    },
+    {
+      "file": "corrupt_file.csv",
+      "status": "error",
+      "outputs": [
+        "integrity_verified"
+      ],
+      "error": "Unable to parse CSV file: C:\\Users\\Andrei\\Documents\\GitHub\\elective4project\\input\\corrupt_file.csv"
+    },
     {
       "file": "emailtry.csv",
       "status": "ok",
@@ -15,6 +33,13 @@
         "emailtry_masked.csv",
         "emailtry_masked.checksum",
         "emailtry_security_summary.png"
+      ]
+    },
+    {
+      "file": "integrity_fail_test.csv",
+      "status": "integrity_failed",
+      "outputs": [
+        "integrity_verification_failed"
       ]
     },
     {
@@ -35,6 +60,13 @@
         "tampered_test_masked.csv",
         "tampered_test_masked.checksum",
         "tampered_test_security_summary.png"
+      ]
+    },
+    {
+      "file": "skip_test.bin",
+      "status": "skipped",
+      "outputs": [
+        "decryption_skipped_no_key"
       ]
     }
   ]
