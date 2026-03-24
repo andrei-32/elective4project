@@ -1,24 +1,77 @@
 {
-  "total_files": 2,
+  "total_files": 6,
   "status_counts": {
-    "ok": 1,
+    "ok": 6,
     "skipped": 0,
     "integrity_failed": 0,
-    "error": 1
+    "error": 0
   },
   "results": [
     {
-      "file": "a.csv",
+      "file": "tampered_test.csv",
       "status": "ok",
       "outputs": [
-        "a_masked.csv"
+        "integrity_verified",
+        "tampered_test_encrypted.bin",
+        "tampered_test_masked.csv",
+        "tampered_test_masked.checksum",
+        "tampered_test_security_summary.png"
       ]
     },
     {
-      "file": "b.csv",
-      "status": "error",
-      "outputs": [],
-      "error": "failed"
+      "file": "sample_data2.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "sample_data2_encrypted.bin",
+        "sample_data2_masked.csv",
+        "sample_data2_masked.checksum",
+        "sample_data2_security_summary.png"
+      ]
+    },
+    {
+      "file": "emailtry.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "emailtry_encrypted.bin",
+        "emailtry_masked.csv",
+        "emailtry_masked.checksum",
+        "emailtry_security_summary.png"
+      ]
+    },
+    {
+      "file": "customers-100.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "customers-100_encrypted.bin",
+        "customers-100_masked.csv",
+        "customers-100_masked.checksum",
+        "customers-100_security_summary.png"
+      ]
+    },
+    {
+      "file": "external_dataset.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "external_dataset_encrypted.bin",
+        "external_dataset_masked.csv",
+        "external_dataset_masked.checksum",
+        "external_dataset_security_summary.png"
+      ]
+    },
+    {
+      "file": "customers-1000.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "customers-1000_encrypted.bin",
+        "customers-1000_masked.csv",
+        "customers-1000_masked.checksum",
+        "customers-1000_security_summary.png"
+      ]
     }
   ]
 }
