@@ -1,4 +1,4 @@
-2026-03-24 06:30:25,362 | ERROR | src.processor | Error processing empty_test.csv
+2026-03-24 06:43:36,425 | ERROR | src.processor | Error processing empty_test.csv
 Traceback (most recent call last):
   File "/home/runner/work/elective4project/elective4project/src/mask_sensitive_columns.py", line 134, in _read_csv_flexible
     dialect = sniffer.sniff(sample)
@@ -19,7 +19,7 @@ Traceback (most recent call last):
   File "/home/runner/work/elective4project/elective4project/src/mask_sensitive_columns.py", line 142, in _read_csv_flexible
     raise ValueError(f"Unable to parse CSV file: {csv_path}") from last_error
 ValueError: Unable to parse CSV file: /home/runner/work/elective4project/elective4project/input/empty_test.csv
-2026-03-24 06:30:26,947 | ERROR | src.processor | Error processing empty try.csv
+2026-03-24 06:43:37,976 | ERROR | src.processor | Error processing empty try.csv
 Traceback (most recent call last):
   File "/home/runner/work/elective4project/elective4project/src/mask_sensitive_columns.py", line 134, in _read_csv_flexible
     dialect = sniffer.sniff(sample)
@@ -40,11 +40,11 @@ Traceback (most recent call last):
   File "/home/runner/work/elective4project/elective4project/src/mask_sensitive_columns.py", line 142, in _read_csv_flexible
     raise ValueError(f"Unable to parse CSV file: {csv_path}") from last_error
 ValueError: Unable to parse CSV file: /home/runner/work/elective4project/elective4project/input/empty try.csv
-2026-03-24 06:30:27,064 | INFO | src.processor | empty_test.csv: error -> ['integrity_verified', 'empty_test_encrypted.bin', 'empty_test_security_summary.png']
-2026-03-24 06:30:27,064 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_encrypted.bin', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
-2026-03-24 06:30:27,064 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_encrypted.bin', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
-2026-03-24 06:30:27,064 | INFO | src.processor | emailtry.csv: ok -> ['integrity_verified', 'emailtry_encrypted.bin', 'emailtry_masked.csv', 'emailtry_masked.checksum', 'emailtry_security_summary.png']
-2026-03-24 06:30:27,064 | INFO | src.processor | external_dataset.csv: ok -> ['integrity_verified', 'external_dataset_encrypted.bin', 'external_dataset_masked.csv', 'external_dataset_masked.checksum', 'external_dataset_security_summary.png']
-2026-03-24 06:30:27,064 | INFO | src.processor | empty try.csv: error -> ['integrity_verified', 'empty try_encrypted.bin', 'empty try_security_summary.png']
-2026-03-24 06:30:27,167 | INFO | src.processor | Summary JSON generated: output/pipeline_summary.json
-2026-03-24 06:30:27,167 | INFO | src.processor | Summary chart generated: output/pipeline_summary.png
+2026-03-24 06:43:38,094 | INFO | src.processor | empty_test.csv: error -> ['integrity_verified', 'empty_test_encrypted.bin', 'empty_test_security_summary.png']
+2026-03-24 06:43:38,094 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_encrypted.bin', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
+2026-03-24 06:43:38,094 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_encrypted.bin', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
+2026-03-24 06:43:38,094 | INFO | src.processor | emailtry.csv: ok -> ['integrity_verified', 'emailtry_encrypted.bin', 'emailtry_masked.csv', 'emailtry_masked.checksum', 'emailtry_security_summary.png']
+2026-03-24 06:43:38,094 | INFO | src.processor | external_dataset.csv: ok -> ['integrity_verified', 'external_dataset_encrypted.bin', 'external_dataset_masked.csv', 'external_dataset_masked.checksum', 'external_dataset_security_summary.png']
+2026-03-24 06:43:38,094 | INFO | src.processor | empty try.csv: error -> ['integrity_verified', 'empty try_encrypted.bin', 'empty try_security_summary.png']
+2026-03-24 06:43:38,195 | INFO | src.processor | Summary JSON generated: output/pipeline_summary.json
+2026-03-24 06:43:38,195 | INFO | src.processor | Summary chart generated: output/pipeline_summary.png
