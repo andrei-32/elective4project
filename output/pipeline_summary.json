@@ -1,24 +1,80 @@
 {
-  "total_files": 2,
+  "total_files": 7,
   "status_counts": {
-    "ok": 1,
-    "skipped": 0,
-    "integrity_failed": 0,
+    "ok": 4,
+    "skipped": 1,
+    "integrity_failed": 1,
     "error": 1
   },
   "results": [
     {
-      "file": "a.csv",
+      "file": "empty_test.csv",
+      "status": "error",
+      "outputs": [
+        "integrity_verified",
+        "empty_test_encrypted.bin",
+        "empty_test_security_summary.png"
+      ],
+      "error": "Unable to parse CSV file: /home/runner/work/elective4project/elective4project/input/empty_test.csv"
+    },
+    {
+      "file": "tampered_test.csv",
       "status": "ok",
       "outputs": [
-        "a_masked.csv"
+        "integrity_verified",
+        "tampered_test_encrypted.bin",
+        "tampered_test_masked.csv",
+        "tampered_test_masked.checksum",
+        "tampered_test_security_summary.png"
       ]
     },
     {
-      "file": "b.csv",
-      "status": "error",
-      "outputs": [],
-      "error": "failed"
+      "file": "sample_data2.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "sample_data2_encrypted.bin",
+        "sample_data2_masked.csv",
+        "sample_data2_masked.checksum",
+        "sample_data2_security_summary.png"
+      ]
+    },
+    {
+      "file": "emailtry.csv",
+      "status": "integrity_failed",
+      "outputs": [
+        "integrity_verification_failed",
+        "emailtry_security_summary.png"
+      ]
+    },
+    {
+      "file": "external_dataset.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "external_dataset_encrypted.bin",
+        "external_dataset_masked.csv",
+        "external_dataset_masked.checksum",
+        "external_dataset_security_summary.png"
+      ]
+    },
+    {
+      "file": "customers-1000.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "customers-1000_encrypted.bin",
+        "customers-1000_masked.csv",
+        "customers-1000_masked.checksum",
+        "customers-1000_security_summary.png"
+      ]
+    },
+    {
+      "file": "testing_bin.bin",
+      "status": "skipped",
+      "outputs": [
+        "decryption_skipped_invalid_file"
+      ]
     }
   ]
 }

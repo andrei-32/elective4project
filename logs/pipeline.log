@@ -1,4 +1,4 @@
-2026-03-24 20:45:00,098 | ERROR | src.processor | Error processing empty_test.csv
+2026-03-24 20:47:59,047 | ERROR | src.processor | Error processing empty_test.csv
 Traceback (most recent call last):
   File "/home/runner/work/elective4project/elective4project/src/mask_sensitive_columns.py", line 134, in _read_csv_flexible
     dialect = sniffer.sniff(sample)
@@ -19,10 +19,13 @@ Traceback (most recent call last):
   File "/home/runner/work/elective4project/elective4project/src/mask_sensitive_columns.py", line 142, in _read_csv_flexible
     raise ValueError(f"Unable to parse CSV file: {csv_path}") from last_error
 ValueError: Unable to parse CSV file: /home/runner/work/elective4project/elective4project/input/empty_test.csv
-2026-03-24 20:45:01,530 | INFO | src.processor | empty_test.csv: error -> ['integrity_verified', 'empty_test_encrypted.bin', 'empty_test_security_summary.png']
-2026-03-24 20:45:01,530 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_encrypted.bin', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
-2026-03-24 20:45:01,531 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_encrypted.bin', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
-2026-03-24 20:45:01,531 | INFO | src.processor | external_dataset.csv: ok -> ['integrity_verified', 'external_dataset_encrypted.bin', 'external_dataset_masked.csv', 'external_dataset_masked.checksum', 'external_dataset_security_summary.png']
-2026-03-24 20:45:01,531 | INFO | src.processor | customers-1000.csv: ok -> ['integrity_verified', 'customers-1000_encrypted.bin', 'customers-1000_masked.csv', 'customers-1000_masked.checksum', 'customers-1000_security_summary.png']
-2026-03-24 20:45:01,619 | INFO | src.processor | Summary JSON generated: output/pipeline_summary.json
-2026-03-24 20:45:01,619 | INFO | src.processor | Summary chart generated: output/pipeline_summary.png
+2026-03-24 20:48:00,602 | WARNING | src.processor | Skipping testing_bin.bin: Decryption failed. Invalid or wrong encryption key.
+2026-03-24 20:48:00,602 | INFO | src.processor | empty_test.csv: error -> ['integrity_verified', 'empty_test_encrypted.bin', 'empty_test_security_summary.png']
+2026-03-24 20:48:00,602 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_encrypted.bin', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
+2026-03-24 20:48:00,602 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_encrypted.bin', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
+2026-03-24 20:48:00,602 | INFO | src.processor | emailtry.csv: integrity_failed -> ['integrity_verification_failed', 'emailtry_security_summary.png']
+2026-03-24 20:48:00,602 | INFO | src.processor | external_dataset.csv: ok -> ['integrity_verified', 'external_dataset_encrypted.bin', 'external_dataset_masked.csv', 'external_dataset_masked.checksum', 'external_dataset_security_summary.png']
+2026-03-24 20:48:00,602 | INFO | src.processor | customers-1000.csv: ok -> ['integrity_verified', 'customers-1000_encrypted.bin', 'customers-1000_masked.csv', 'customers-1000_masked.checksum', 'customers-1000_security_summary.png']
+2026-03-24 20:48:00,603 | INFO | src.processor | testing_bin.bin: skipped -> ['decryption_skipped_invalid_file']
+2026-03-24 20:48:00,713 | INFO | src.processor | Summary JSON generated: output/pipeline_summary.json
+2026-03-24 20:48:00,713 | INFO | src.processor | Summary chart generated: output/pipeline_summary.png
