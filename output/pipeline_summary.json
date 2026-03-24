@@ -1,7 +1,7 @@
 {
-  "total_files": 5,
+  "total_files": 2,
   "status_counts": {
-    "ok": 4,
+    "ok": 1,
     "skipped": 0,
     "integrity_failed": 0,
     "error": 1
@@ -17,56 +17,8 @@
     {
       "file": "b.csv",
       "status": "error",
-      "outputs": [
-        "integrity_verified",
-        "empty_test_encrypted.bin",
-        "empty_test_security_summary.png"
-      ],
-      "error": "Unable to parse CSV file: /home/runner/work/elective4project/elective4project/input/empty_test.csv"
-    },
-    {
-      "file": "tampered_test.csv",
-      "status": "ok",
-      "outputs": [
-        "integrity_verified",
-        "tampered_test_encrypted.bin",
-        "tampered_test_masked.csv",
-        "tampered_test_masked.checksum",
-        "tampered_test_security_summary.png"
-      ]
-    },
-    {
-      "file": "sample_data2.csv",
-      "status": "ok",
-      "outputs": [
-        "integrity_verified",
-        "sample_data2_encrypted.bin",
-        "sample_data2_masked.csv",
-        "sample_data2_masked.checksum",
-        "sample_data2_security_summary.png"
-      ]
-    },
-    {
-      "file": "external_dataset.csv",
-      "status": "ok",
-      "outputs": [
-        "integrity_verified",
-        "external_dataset_encrypted.bin",
-        "external_dataset_masked.csv",
-        "external_dataset_masked.checksum",
-        "external_dataset_security_summary.png"
-      ]
-    },
-    {
-      "file": "customers-1000.csv",
-      "status": "ok",
-      "outputs": [
-        "integrity_verified",
-        "customers-1000_encrypted.bin",
-        "customers-1000_masked.csv",
-        "customers-1000_masked.checksum",
-        "customers-1000_security_summary.png"
-      ]
+      "outputs": [],
+      "error": "failed"
     }
   ]
 }
