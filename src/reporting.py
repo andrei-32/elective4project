@@ -262,7 +262,9 @@ def generate_file_security_summary(
         conclusion_text = summary_str
     else:
         conclusion_text = "The system successfully processed the uploaded file by detecting all sensitive data fields. All entries were masked, encrypted, and verified, resulting in 100% processing success and ensured data integrity."
-    ax_conc.text(box_x + box_w/2, box_y+box_h/2, conclusion_text, ha='center', va='center', fontsize=15, color='#222', wrap=True, zorder=3)
+        ax_conc.text(box_x + box_w/2, box_y+box_h/2, conclusion_text, ha='center', va='center', fontsize=15, color='#222', wrap=True, zorder=3)
+        # Remove any bottom summary text (plt.figtext) if present
+        # (Do not add any plt.figtext or similar at the bottom)
     # Remove axes
     ax_conc.set_xlim(0, 1)
     ax_conc.set_ylim(0, 1)
@@ -295,8 +297,7 @@ def generate_file_security_summary(
         ax_pie.axis('equal')
         ax_pie.set_title("Success Rate", fontsize=14, fontweight='bold')
 
-    # Short text below (modern style)
-    fig.text(0.5, 0.01, short_text, ha='center', va='bottom', fontsize=13, color='#333', wrap=True, fontweight='medium')
+    # (Removed bottom summary text; only show in conclusion box)
 
     # Save image
     img_path = output_dir / f"{file_path.stem}_security_summary.png"
