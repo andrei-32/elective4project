@@ -35,6 +35,14 @@ jobs:
 
       - name: Run tests
         run: pytest tests/ -v
+      
+      - name: Upload test results log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-log
+          path: logs/test_results.log
+          if-no-files-found: warn
   
   process-csv:
     runs-on: ubuntu-latest
