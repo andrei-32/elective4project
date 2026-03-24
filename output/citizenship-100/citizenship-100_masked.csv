@@ -1,0 +1,101 @@
+Index,Ethnic Origin,Citizen Status,Religious Question,Religion Beliefs,Response,Phone,SSN
+1,Tagalog,Filipino citizen,Do you believe in separation of church and state?,Roman Catholic,Yes,*********189,***-**-9777
+2,Cebuano,Dual citizen,Do you believe in interfaith dialogue as a way to reduce conflict?,Sunni Muslim,No,*********731,***-**-6602
+3,Ilocano,Naturalized citizen,Do you believe in faith healing as a part of medical care?,Iglesia ni Cristo,Sometimes,*********859,***-**-2785
+4,Hiligaynon,Non-citizen resident,Do you believe in attending weekly religious services?,Protestant,Prefer not to say,*********473,***-**-8927
+5,Bikol,Filipino citizen,Do you believe in religious education in public schools?,Aglipayan,Don't know,*********292,***-**-5155
+6,Waray,Dual citizen,Do you believe in the right to choose your own religion?,Indigenous animist,Yes,*********119,***-**-7644
+7,Kapampangan,Naturalized citizen,Do you believe in blessing new government programs?,Non-religious,No,*********886,***-**-6432
+8,Pangasinan,Non-citizen resident,Do you believe in honoring indigenous spiritual practices?,Roman Catholic,Sometimes,*********299,***-**-8927
+9,Tausug,Filipino citizen,Do you believe in environmental stewardship as a religious duty?,Sunni Muslim,Prefer not to say,*********519,***-**-9667
+10,Maranao,Dual citizen,Do you believe in forgiveness and reconciliation in public policy?,Iglesia ni Cristo,Don't know,*********774,***-**-5622
+11,Maguindanao,Naturalized citizen,Do you believe in separation of church and state?,Protestant,Yes,*********439,***-**-2358
+12,Kankanaey,Non-citizen resident,Do you believe in interfaith dialogue as a way to reduce conflict?,Aglipayan,No,*********671,***-**-6606
+13,Ifugao,Filipino citizen,Do you believe in faith healing as a part of medical care?,Indigenous animist,Sometimes,*********450,***-**-6419
+14,Ivatan,Dual citizen,Do you believe in attending weekly religious services?,Non-religious,Prefer not to say,*********021,***-**-7537
+15,Aklanon,Naturalized citizen,Do you believe in religious education in public schools?,Roman Catholic,Don't know,*********232,***-**-7309
+16,Chavacano,Non-citizen resident,Do you believe in the right to choose your own religion?,Sunni Muslim,Yes,*********894,***-**-4749
+17,Surigaonon,Filipino citizen,Do you believe in blessing new government programs?,Iglesia ni Cristo,No,*********762,***-**-8703
+18,Ibanag,Dual citizen,Do you believe in honoring indigenous spiritual practices?,Protestant,Sometimes,*********296,***-**-6941
+19,Yakan,Naturalized citizen,Do you believe in environmental stewardship as a religious duty?,Aglipayan,Prefer not to say,*********957,***-**-5955
+20,Sama-Bajau,Non-citizen resident,Do you believe in forgiveness and reconciliation in public policy?,Indigenous animist,Don't know,*********266,***-**-5821
+21,Kinaray-a,Filipino citizen,Do you believe in separation of church and state?,Non-religious,Yes,*********207,***-**-7551
+22,Sambal,Dual citizen,Do you believe in interfaith dialogue as a way to reduce conflict?,Roman Catholic,No,*********271,***-**-4476
+23,Ibaloi,Naturalized citizen,Do you believe in faith healing as a part of medical care?,Sunni Muslim,Sometimes,*********837,***-**-4362
+24,Itawit,Non-citizen resident,Do you believe in attending weekly religious services?,Iglesia ni Cristo,Prefer not to say,*********693,***-**-7531
+25,Bicolano,Filipino citizen,Do you believe in religious education in public schools?,Protestant,Don't know,*********109,***-**-4968
+26,Tagalog,Dual citizen,Do you believe in the right to choose your own religion?,Aglipayan,Yes,*********998,***-**-5413
+27,Cebuano,Naturalized citizen,Do you believe in blessing new government programs?,Indigenous animist,No,*********699,***-**-7652
+28,Ilocano,Non-citizen resident,Do you believe in honoring indigenous spiritual practices?,Non-religious,Sometimes,*********151,***-**-2204
+29,Hiligaynon,Filipino citizen,Do you believe in environmental stewardship as a religious duty?,Roman Catholic,Prefer not to say,*********290,***-**-7669
+30,Bikol,Dual citizen,Do you believe in forgiveness and reconciliation in public policy?,Sunni Muslim,Don't know,*********179,***-**-4766
+31,Waray,Naturalized citizen,Do you believe in separation of church and state?,Iglesia ni Cristo,Yes,*********345,***-**-7205
+32,Kapampangan,Non-citizen resident,Do you believe in interfaith dialogue as a way to reduce conflict?,Protestant,No,*********690,***-**-6823
+33,Pangasinan,Filipino citizen,Do you believe in faith healing as a part of medical care?,Aglipayan,Sometimes,*********911,***-**-4649
+34,Tausug,Dual citizen,Do you believe in attending weekly religious services?,Indigenous animist,Prefer not to say,*********799,***-**-2401
+35,Maranao,Naturalized citizen,Do you believe in religious education in public schools?,Non-religious,Don't know,*********060,***-**-1876
+36,Maguindanao,Non-citizen resident,Do you believe in the right to choose your own religion?,Roman Catholic,Yes,*********094,***-**-1024
+37,Kankanaey,Filipino citizen,Do you believe in blessing new government programs?,Sunni Muslim,No,*********766,***-**-1216
+38,Ifugao,Dual citizen,Do you believe in honoring indigenous spiritual practices?,Iglesia ni Cristo,Sometimes,*********191,***-**-2613
+39,Ivatan,Naturalized citizen,Do you believe in environmental stewardship as a religious duty?,Protestant,Prefer not to say,*********493,***-**-1712
+40,Aklanon,Non-citizen resident,Do you believe in forgiveness and reconciliation in public policy?,Aglipayan,Don't know,*********673,***-**-8192
+41,Chavacano,Filipino citizen,Do you believe in separation of church and state?,Indigenous animist,Yes,*********986,***-**-4184
+42,Surigaonon,Dual citizen,Do you believe in interfaith dialogue as a way to reduce conflict?,Non-religious,No,*********153,***-**-3133
+43,Ibanag,Naturalized citizen,Do you believe in faith healing as a part of medical care?,Roman Catholic,Sometimes,*********858,***-**-1146
+44,Yakan,Non-citizen resident,Do you believe in attending weekly religious services?,Sunni Muslim,Prefer not to say,*********504,***-**-9141
+45,Sama-Bajau,Filipino citizen,Do you believe in religious education in public schools?,Iglesia ni Cristo,Don't know,*********575,***-**-3986
+46,Kinaray-a,Dual citizen,Do you believe in the right to choose your own religion?,Protestant,Yes,*********438,***-**-1053
+47,Sambal,Naturalized citizen,Do you believe in blessing new government programs?,Aglipayan,No,*********283,***-**-1637
+48,Ibaloi,Non-citizen resident,Do you believe in honoring indigenous spiritual practices?,Indigenous animist,Sometimes,*********141,***-**-5710
+49,Itawit,Filipino citizen,Do you believe in environmental stewardship as a religious duty?,Non-religious,Prefer not to say,*********017,***-**-6535
+50,Bicolano,Dual citizen,Do you believe in forgiveness and reconciliation in public policy?,Roman Catholic,Don't know,*********435,***-**-9940
+51,Tagalog,Naturalized citizen,Do you believe in separation of church and state?,Sunni Muslim,Yes,*********506,***-**-2835
+52,Cebuano,Non-citizen resident,Do you believe in interfaith dialogue as a way to reduce conflict?,Iglesia ni Cristo,No,*********974,***-**-4047
+53,Ilocano,Filipino citizen,Do you believe in faith healing as a part of medical care?,Protestant,Sometimes,*********165,***-**-1709
+54,Hiligaynon,Dual citizen,Do you believe in attending weekly religious services?,Aglipayan,Prefer not to say,*********812,***-**-2926
+55,Bikol,Naturalized citizen,Do you believe in religious education in public schools?,Indigenous animist,Don't know,*********319,***-**-2168
+56,Waray,Non-citizen resident,Do you believe in the right to choose your own religion?,Non-religious,Yes,*********811,***-**-3695
+57,Kapampangan,Filipino citizen,Do you believe in blessing new government programs?,Roman Catholic,No,*********809,***-**-4530
+58,Pangasinan,Dual citizen,Do you believe in honoring indigenous spiritual practices?,Sunni Muslim,Sometimes,*********240,***-**-4323
+59,Tausug,Naturalized citizen,Do you believe in environmental stewardship as a religious duty?,Iglesia ni Cristo,Prefer not to say,*********878,***-**-9096
+60,Maranao,Non-citizen resident,Do you believe in forgiveness and reconciliation in public policy?,Protestant,Don't know,*********211,***-**-7225
+61,Maguindanao,Filipino citizen,Do you believe in separation of church and state?,Aglipayan,Yes,*********012,***-**-2939
+62,Kankanaey,Dual citizen,Do you believe in interfaith dialogue as a way to reduce conflict?,Indigenous animist,No,*********072,***-**-4890
+63,Ifugao,Naturalized citizen,Do you believe in faith healing as a part of medical care?,Non-religious,Sometimes,*********216,***-**-2363
+64,Ivatan,Non-citizen resident,Do you believe in attending weekly religious services?,Roman Catholic,Prefer not to say,*********848,***-**-2072
+65,Aklanon,Filipino citizen,Do you believe in religious education in public schools?,Sunni Muslim,Don't know,*********931,***-**-3049
+66,Chavacano,Dual citizen,Do you believe in the right to choose your own religion?,Iglesia ni Cristo,Yes,*********914,***-**-6715
+67,Surigaonon,Naturalized citizen,Do you believe in blessing new government programs?,Protestant,No,*********486,***-**-3313
+68,Ibanag,Non-citizen resident,Do you believe in honoring indigenous spiritual practices?,Aglipayan,Sometimes,*********805,***-**-1841
+69,Yakan,Filipino citizen,Do you believe in environmental stewardship as a religious duty?,Indigenous animist,Prefer not to say,*********472,***-**-5163
+70,Sama-Bajau,Dual citizen,Do you believe in forgiveness and reconciliation in public policy?,Non-religious,Don't know,*********205,***-**-7687
+71,Kinaray-a,Naturalized citizen,Do you believe in separation of church and state?,Roman Catholic,Yes,*********263,***-**-3705
+72,Sambal,Non-citizen resident,Do you believe in interfaith dialogue as a way to reduce conflict?,Sunni Muslim,No,*********168,***-**-3970
+73,Ibaloi,Filipino citizen,Do you believe in faith healing as a part of medical care?,Iglesia ni Cristo,Sometimes,*********585,***-**-3159
+74,Itawit,Dual citizen,Do you believe in attending weekly religious services?,Protestant,Prefer not to say,*********860,***-**-9411
+75,Bicolano,Naturalized citizen,Do you believe in religious education in public schools?,Aglipayan,Don't know,*********316,***-**-6952
+76,Tagalog,Non-citizen resident,Do you believe in the right to choose your own religion?,Indigenous animist,Yes,*********452,***-**-8781
+77,Cebuano,Filipino citizen,Do you believe in blessing new government programs?,Non-religious,No,*********419,***-**-2585
+78,Ilocano,Dual citizen,Do you believe in honoring indigenous spiritual practices?,Roman Catholic,Sometimes,*********330,***-**-9461
+79,Hiligaynon,Naturalized citizen,Do you believe in environmental stewardship as a religious duty?,Sunni Muslim,Prefer not to say,*********513,***-**-4022
+80,Bikol,Non-citizen resident,Do you believe in forgiveness and reconciliation in public policy?,Iglesia ni Cristo,Don't know,*********387,***-**-9587
+81,Waray,Filipino citizen,Do you believe in separation of church and state?,Protestant,Yes,*********676,***-**-1253
+82,Kapampangan,Dual citizen,Do you believe in interfaith dialogue as a way to reduce conflict?,Aglipayan,No,*********308,***-**-4065
+83,Pangasinan,Naturalized citizen,Do you believe in faith healing as a part of medical care?,Indigenous animist,Sometimes,*********221,***-**-3760
+84,Tausug,Non-citizen resident,Do you believe in attending weekly religious services?,Non-religious,Prefer not to say,*********163,***-**-1865
+85,Maranao,Filipino citizen,Do you believe in religious education in public schools?,Roman Catholic,Don't know,*********586,***-**-2265
+86,Maguindanao,Dual citizen,Do you believe in the right to choose your own religion?,Sunni Muslim,Yes,*********414,***-**-6207
+87,Kankanaey,Naturalized citizen,Do you believe in blessing new government programs?,Iglesia ni Cristo,No,*********867,***-**-2728
+88,Ifugao,Non-citizen resident,Do you believe in honoring indigenous spiritual practices?,Protestant,Sometimes,*********676,***-**-5823
+89,Ivatan,Filipino citizen,Do you believe in environmental stewardship as a religious duty?,Aglipayan,Prefer not to say,*********198,***-**-6377
+90,Aklanon,Dual citizen,Do you believe in forgiveness and reconciliation in public policy?,Indigenous animist,Don't know,*********046,***-**-6757
+91,Chavacano,Naturalized citizen,Do you believe in separation of church and state?,Non-religious,Yes,*********088,***-**-6253
+92,Surigaonon,Non-citizen resident,Do you believe in interfaith dialogue as a way to reduce conflict?,Roman Catholic,No,*********339,***-**-8353
+93,Ibanag,Filipino citizen,Do you believe in faith healing as a part of medical care?,Sunni Muslim,Sometimes,*********431,***-**-3689
+94,Yakan,Dual citizen,Do you believe in attending weekly religious services?,Iglesia ni Cristo,Prefer not to say,*********110,***-**-1724
+95,Sama-Bajau,Naturalized citizen,Do you believe in religious education in public schools?,Protestant,Don't know,*********271,***-**-1509
+96,Kinaray-a,Non-citizen resident,Do you believe in the right to choose your own religion?,Aglipayan,Yes,*********722,***-**-5987
+97,Sambal,Filipino citizen,Do you believe in blessing new government programs?,Indigenous animist,No,*********546,***-**-9896
+98,Ibaloi,Dual citizen,Do you believe in honoring indigenous spiritual practices?,Non-religious,Sometimes,*********621,***-**-6181
+99,Itawit,Naturalized citizen,Do you believe in environmental stewardship as a religious duty?,Roman Catholic,Prefer not to say,*********387,***-**-6632
+100,Bicolano,Non-citizen resident,Do you believe in forgiveness and reconciliation in public policy?,Sunni Muslim,Don't know,*********248,***-**-4093

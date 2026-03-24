@@ -1,7 +1,7 @@
 {
-  "total_files": 6,
+  "total_files": 8,
   "status_counts": {
-    "ok": 4,
+    "ok": 6,
     "skipped": 1,
     "integrity_failed": 1,
     "error": 0
@@ -35,6 +35,28 @@
       "outputs": [
         "integrity_verification_failed",
         "emailtry_security_summary.png"
+      ]
+    },
+    {
+      "file": "citizenship-100.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "citizenship-100_encrypted.bin",
+        "citizenship-100_masked.csv",
+        "citizenship-100_masked.checksum",
+        "citizenship-100_security_summary.png"
+      ]
+    },
+    {
+      "file": "customers-100.csv",
+      "status": "ok",
+      "outputs": [
+        "integrity_verified",
+        "customers-100_encrypted.bin",
+        "customers-100_masked.csv",
+        "customers-100_masked.checksum",
+        "customers-100_security_summary.png"
       ]
     },
     {
