@@ -110,7 +110,7 @@ def _read_csv_flexible(csv_path: Path) -> pd.DataFrame:
     for encoding in encodings:
         try:
             df = pd.read_csv(csv_path, encoding=encoding, on_bad_lines="skip")
-            if len(df.columns) > 1 or not df.empty:
+            if len(df.columns) > 1 and not df.empty:
                 return df
         except Exception as exc:
             last_error = exc
@@ -120,7 +120,7 @@ def _read_csv_flexible(csv_path: Path) -> pd.DataFrame:
         for delimiter in delimiters:
             try:
                 df = pd.read_csv(csv_path, encoding=encoding, sep=delimiter, on_bad_lines="skip")
-                if len(df.columns) > 1 or not df.empty:
+                if len(df.columns) > 1 and not df.empty:
                     return df
             except Exception as exc:
                 last_error = exc
@@ -133,7 +133,7 @@ def _read_csv_flexible(csv_path: Path) -> pd.DataFrame:
                 sniffer = csv.Sniffer()
                 dialect = sniffer.sniff(sample)
                 df = pd.read_csv(csv_path, encoding=encoding, sep=dialect.delimiter, on_bad_lines="skip")
-                if len(df.columns) > 1 or not df.empty:
+                if len(df.columns) > 1 and not df.empty:
                     return df
         except Exception as exc:
             last_error = exc
