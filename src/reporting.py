@@ -68,6 +68,103 @@ def write_pipeline_summary(results: list[dict]) -> tuple[Path, Path]:
 
     return summary_json_path, summary_png_path
 
+
+def generate_failed_file_summary(
+    file_path: Path,
+    error_message: str,
+    status: str,
+    output_dir: Path,
+) -> Path:
+    """
+    Generate a security summary image for a file that failed processing.
+    Shows the file name, failure status, and error details.
+    """
+    from matplotlib.patches import FancyBboxPatch
+    from textwrap import fill as textwrap_fill
+
+    TITLE_BG  = "#1a1a2e"
+    TITLE_FG  = "#ffffff"
+    FAIL_CLR  = "#dc3545"
+    TEXT_CLR  = "#212529"
+    MUTED_CLR = "#6c757d"
+    ACCENT    = "#0d6efd"
+
+    fig = plt.figure(figsize=(14, 7), facecolor="#ffffff")
+    gs = gridspec.GridSpec(3, 1, height_ratios=[0.25, 0.35, 0.40], hspace=0.35)
+
+    # ── Title banner ──────────────────────────────────────────────────
+    ax_title = fig.add_subplot(gs[0])
+    ax_title.axis("off")
+    ax_title.set_xlim(0, 1)
+    ax_title.set_ylim(0, 1)
+    ax_title.add_patch(FancyBboxPatch(
+        (0.0, 0.0), 1.0, 1.0,
+        boxstyle="round,pad=0.02", facecolor=TITLE_BG,
+        edgecolor="none", zorder=0,
+    ))
+    ax_title.text(
+        0.5, 0.62, "Security Summary — FAILED",
+        ha="center", va="center",
+        fontsize=26, fontweight="bold", color=FAIL_CLR,
+        family="DejaVu Sans",
+    )
+    ax_title.text(
+        0.5, 0.22, file_path.name,
+        ha="center", va="center",
+        fontsize=17, color="#adb5bd", family="DejaVu Sans",
+    )
+
+    # ── Status badge ──────────────────────────────────────────────────
+    ax_status = fig.add_subplot(gs[1])
+    ax_status.axis("off")
+    ax_status.set_xlim(0, 1)
+    ax_status.set_ylim(0, 1)
+
+    status_label = "INTEGRITY FAILED" if status == "integrity_failed" else "ERROR"
+    ax_status.add_patch(FancyBboxPatch(
+        (0.25, 0.20), 0.50, 0.60,
+        boxstyle="round,pad=0.05", facecolor=FAIL_CLR,
+        edgecolor="none", zorder=1,
+    ))
+    ax_status.text(
+        0.5, 0.50, f"\u2718  {status_label}",
+        ha="center", va="center",
+        fontsize=28, fontweight="bold", color="#ffffff",
+        family="DejaVu Sans",
+    )
+
+    # ── Error details box ─────────────────────────────────────────────
+    ax_err = fig.add_subplot(gs[2])
+    ax_err.axis("off")
+    ax_err.set_xlim(0, 1)
+    ax_err.set_ylim(0, 1)
+
+    ax_err.add_patch(FancyBboxPatch(
+        (0.05, 0.10), 0.90, 0.75,
+        boxstyle="round,pad=0.04", facecolor="#ffffff",
+        edgecolor=ACCENT, linewidth=1.8, zorder=2,
+    ))
+    ax_err.text(
+        0.5, 0.90, "Error Details",
+        ha="center", va="bottom",
+        fontsize=18, fontweight="bold", color=TEXT_CLR,
+        family="DejaVu Sans",
+    )
+    wrapped = textwrap_fill(error_message, width=70)
+    ax_err.text(
+        0.5, 0.48, wrapped,
+        ha="center", va="center",
+        fontsize=12, color=MUTED_CLR,
+        linespacing=1.45, family="DejaVu Sans",
+        zorder=3,
+    )
+
+    img_path = output_dir / f"{file_path.stem}_security_summary.png"
+    plt.savefig(img_path, dpi=180, bbox_inches="tight", facecolor="#ffffff")
+    plt.close(fig)
+    return img_path
+
+
 def _detect_sensitive_types(df: pd.DataFrame) -> list[str]:
     """Return list of detected sensitive types in the DataFrame columns."""
     types = []

@@ -90,9 +90,9 @@ jobs:
           path: logs/
           if-no-files-found: ignore
 
-      # Commit and push output files to repo (only on push to main/master)
+      # Commit and push output files to repo (on push to main/master, even on failure)
       - name: Commit and push output files
-        if: success() && github.event_name == 'push'
+        if: always() && github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

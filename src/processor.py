@@ -55,12 +55,22 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
     result = {"file": str(csv_path.name), "status": "ok", "outputs": []}
     file_output_dir = config.OUTPUT_DIR / csv_path.stem
     file_output_dir.mkdir(parents=True, exist_ok=True)
-    from .reporting import generate_file_security_summary
+    from .reporting import generate_file_security_summary, generate_failed_file_summary
     try:
         integrity_verified = verify_file_integrity(csv_path, output_dir=file_output_dir)
         if not integrity_verified:
             result["status"] = "integrity_failed"
             result["outputs"].append("integrity_verification_failed")
+            try:
+                fail_img = generate_failed_file_summary(
+                    file_path=csv_path,
+                    error_message="File integrity verification failed.",
+                    status="integrity_failed",
+                    output_dir=file_output_dir,
+                )
+                result["outputs"].append(str(fail_img.name))
+            except Exception:
+                logger.warning("Could not generate failed report for %s", csv_path.name)
             return result
 
         result["outputs"].append("integrity_verified")
@@ -100,6 +110,16 @@ def _process_csv_file(csv_path: Path, skip_encryption: bool) -> dict:
         logger.exception("Error processing %s", csv_path.name)
         result["status"] = "error"
         result["error"] = str(e)
+        try:
+            fail_img = generate_failed_file_summary(
+                file_path=csv_path,
+                error_message=str(e),
+                status="error",
+                output_dir=file_output_dir,
+            )
+            result["outputs"].append(str(fail_img.name))
+        except Exception:
+            logger.warning("Could not generate failed report for %s", csv_path.name)
 
     return result
 
