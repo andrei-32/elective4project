@@ -1,9 +1,8 @@
-2026-03-24 23:51:56,992 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_encrypted.bin', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
-2026-03-24 23:51:56,992 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_encrypted.bin', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
-2026-03-24 23:51:56,992 | INFO | src.processor | emailtry.csv: integrity_failed -> ['integrity_verification_failed', 'emailtry_security_summary.png']
-2026-03-24 23:51:56,992 | INFO | src.processor | citizenship-100.csv: ok -> ['integrity_verified', 'citizenship-100_encrypted.bin', 'citizenship-100_masked.csv', 'citizenship-100_masked.checksum', 'citizenship-100_security_summary.png']
-2026-03-24 23:51:56,992 | INFO | src.processor | customers-100.csv: ok -> ['integrity_verified', 'customers-100_encrypted.bin', 'customers-100_masked.csv', 'customers-100_masked.checksum', 'customers-100_security_summary.png']
-2026-03-24 23:51:56,992 | INFO | src.processor | external_dataset.csv: ok -> ['integrity_verified', 'external_dataset_encrypted.bin', 'external_dataset_masked.csv', 'external_dataset_masked.checksum', 'external_dataset_security_summary.png']
-2026-03-24 23:51:56,992 | INFO | src.processor | customers-1000.csv: ok -> ['integrity_verified', 'customers-1000_encrypted.bin', 'customers-1000_masked.csv', 'customers-1000_masked.checksum', 'customers-1000_security_summary.png']
-2026-03-24 23:51:57,086 | INFO | src.processor | Summary JSON generated: output/pipeline_summary.json
-2026-03-24 23:51:57,086 | INFO | src.processor | Summary chart generated: output/pipeline_summary.png
+2026-03-25 00:00:03,145 | INFO | src.processor | tampered_test.csv: ok -> ['integrity_verified', 'tampered_test_encrypted.bin', 'tampered_test_masked.csv', 'tampered_test_masked.checksum', 'tampered_test_security_summary.png']
+2026-03-25 00:00:03,145 | INFO | src.processor | sample_data2.csv: ok -> ['integrity_verified', 'sample_data2_encrypted.bin', 'sample_data2_masked.csv', 'sample_data2_masked.checksum', 'sample_data2_security_summary.png']
+2026-03-25 00:00:03,145 | INFO | src.processor | citizenship-100.csv: ok -> ['integrity_verified', 'citizenship-100_encrypted.bin', 'citizenship-100_masked.csv', 'citizenship-100_masked.checksum', 'citizenship-100_security_summary.png']
+2026-03-25 00:00:03,145 | INFO | src.processor | customers-100.csv: ok -> ['integrity_verified', 'customers-100_encrypted.bin', 'customers-100_masked.csv', 'customers-100_masked.checksum', 'customers-100_security_summary.png']
+2026-03-25 00:00:03,145 | INFO | src.processor | external_dataset.csv: ok -> ['integrity_verified', 'external_dataset_encrypted.bin', 'external_dataset_masked.csv', 'external_dataset_masked.checksum', 'external_dataset_security_summary.png']
+2026-03-25 00:00:03,146 | INFO | src.processor | customers-1000.csv: ok -> ['integrity_verified', 'customers-1000_encrypted.bin', 'customers-1000_masked.csv', 'customers-1000_masked.checksum', 'customers-1000_security_summary.png']
+2026-03-25 00:00:03,243 | INFO | src.processor | Summary JSON generated: output/pipeline_summary.json
+2026-03-25 00:00:03,243 | INFO | src.processor | Summary chart generated: output/pipeline_summary.png
