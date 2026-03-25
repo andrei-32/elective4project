@@ -59,6 +59,7 @@ jobs:
           if-no-files-found: warn
   
   process-csv:
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: write  # Required to push commits
